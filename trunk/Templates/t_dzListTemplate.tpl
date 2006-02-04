@@ -127,7 +127,7 @@ end;
 
 function _DZ_LIST_TEMPLATE_.Insert(_Item: _ITEM_TYPE_): integer;
 begin
-  Result := FItems.Add(_Item);
+  Result := FItems.Add(Pointer(_Item));
 end;
 
 {$ENDIF __DZ_LIST_TEMPLATE_SECOND_PASS__}

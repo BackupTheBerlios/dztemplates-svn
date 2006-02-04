@@ -105,7 +105,7 @@ begin
     end;
 
   // dupAccept:
-  FItems.Insert(Result, _Item);
+  FItems.Insert(Result, Pointer(_Item));
 end;
 
 function _DZ_SORTED_LIST_TEMPLATE_.Search(_Key: _KEY_TYPE_; out _Idx: integer): boolean;
@@ -113,6 +113,7 @@ begin
   Result := BinarySearch(0, FItems.Count - 1, _Idx, _Key, CompareTo)
 end;
 
+{$IFNDEF __DZ_SORTED_LIST_TEMPLATE_ITEM_TYPE_IS_INTEGER__}
 function _DZ_SORTED_LIST_TEMPLATE_.Search(_Key: _KEY_TYPE_; out _Item: _ITEM_TYPE_): boolean;
 var
   Idx: integer;
@@ -121,6 +122,7 @@ begin
   if Result then
     _Item := _ITEM_TYPE_(FItems[Idx]);
 end;
+{$ENDIF __DZ_SORTED_LIST_TEMPLATE_ITEM_TYPE_IS_INTEGER__}
 
 {$ENDIF __DZ_SORTED_LIST_TEMPLATE_SECOND_PASS__}
 
