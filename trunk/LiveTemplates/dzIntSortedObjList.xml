@@ -39,7 +39,7 @@ type
 
 type
   {: List for storing |itemtype| items sorted by Integer }
-  |listtype| = class(_DZ_SORTED_OBJECT_LIST_TEMPLATE_)
+  |listtype| = class(_DZ_INTEGER_SORTED_OBJECT_LIST_TEMPLATE_)
   protected
     {: return the key of an item for comparison }
     function KeyOf(const _Item: |itemtype|): Integer; override;
