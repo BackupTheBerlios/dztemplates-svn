@@ -11,7 +11,8 @@ uses
   u_MyItem in '..\u_MyItem.pas',
   i_MyItemList in '..\i_MyItemList.pas',
   u_MyItemList in '..\u_MyItemList.pas',
-  u_dzQuicksort in '..\..\Units\u_dzQuicksort.pas';
+  u_dzQuicksort in '..\..\Units\u_dzQuicksort.pas',
+  u_MyItemListSorter in '..\u_MyItemListSorter.pas';
 
 var
   List: TSortableMyItemList;

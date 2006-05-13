@@ -34,12 +34,13 @@ uses
 type
   _LIST_ANCESTOR_ = TObject;
   _LIST_CONTAINER_ = TList;
+  _LIST_CONTAINER_ITEM_TYPE_ = pointer; 
   _ITEM_TYPE_ = |itemtype|;
 {$INCLUDE 't_dzIntegerSortedObjectListTemplate.tpl'}
 
 type
   {: List for storing |itemtype| items sorted by Integer }
-  |listtype| = class(_DZ_INTEGER_SORTED_OBJECT_LIST_TEMPLATE_)
+  |listtype| = class(_DZ_SORTED_OBJECT_LIST_TEMPLATE_)
   protected
     {: return the key of an item for comparison }
     function KeyOf(const _Item: |itemtype|): Integer; override;

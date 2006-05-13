@@ -15,6 +15,8 @@ type
   _LIST_ANCESTOR_ = TInterfacedObject;
   {: Container type used to actually store the items: TList or TInterfacelist }
   _LIST_CONTAINER_ = TList;
+  {: The native item type of the list container (Pointer for TList, IInterface for TInterfaceList}
+  _LIST_CONTAINER_ITEM_TYPE_ = pointer; 
   {: The item type to be stored in the list }
   _ITEM_TYPE_ = TObject;
 

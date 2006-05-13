@@ -5,12 +5,12 @@
 			<Option Name="Personality">Delphi.Personality</Option>
 			<Option Name="ProjectType"></Option>
 			<Option Name="Version">1.0</Option>
-			<Option Name="GUID">{BE583137-2770-457B-B54D-B84FCED16229}</Option>
+			<Option Name="GUID">{7D6F9B62-9C75-4456-B7CC-3DF3C3B5AC80}</Option>
 		</Option>
 	</PersonalityInfo>
 	<Delphi.Personality>
 		<Source>
-			<Source Name="MainSource">MyItemHashTest.dpr</Source>
+			<Source Name="MainSource">LiveTemplatesTest.dpr</Source>
 		</Source>
 		<FileVersion>
 			<FileVersion Name="Version">7.0</FileVersion>
@@ -30,7 +30,7 @@
 			<Compiler Name="L">1</Compiler>
 			<Compiler Name="M">0</Compiler>
 			<Compiler Name="N">1</Compiler>
-			<Compiler Name="O">1</Compiler>
+			<Compiler Name="O">0</Compiler>
 			<Compiler Name="P">1</Compiler>
 			<Compiler Name="Q">0</Compiler>
 			<Compiler Name="R">0</Compiler>
@@ -88,7 +88,6 @@
 			<Compiler Name="ForLoopVarUndef">True</Compiler>
 			<Compiler Name="UnitNameMismatch">True</Compiler>
 			<Compiler Name="NoCFGFileFound">True</Compiler>
-			<Compiler Name="MessageDirective">True</Compiler>
 			<Compiler Name="ImplicitVariants">True</Compiler>
 			<Compiler Name="UnicodeToLocale">True</Compiler>
 			<Compiler Name="LocaleToUnicode">True</Compiler>
@@ -100,49 +99,53 @@
 			<Compiler Name="UnsafeCast">False</Compiler>
 			<Compiler Name="OptionTruncated">True</Compiler>
 			<Compiler Name="WideCharReduced">True</Compiler>
-			<Compiler Name="DuplicatesIgnored">True</Compiler>  <Compiler Name="UnitInitSeq">True</Compiler>
-      <Compiler Name="LocalPInvoke">True</Compiler>
-      <Compiler Name="CodePage"></Compiler>
-    </Compiler>
+			<Compiler Name="DuplicatesIgnored">True</Compiler>
+			<Compiler Name="UnitInitSeq">True</Compiler>
+			<Compiler Name="LocalPInvoke">True</Compiler>
+			<Compiler Name="MessageDirective">True</Compiler>
+			<Compiler Name="CodePage"></Compiler>
+		</Compiler>
 		<Linker>
 			<Linker Name="MapFile">0</Linker>
 			<Linker Name="OutputObjs">0</Linker>
+			<Linker Name="GenerateHpps">False</Linker>
 			<Linker Name="ConsoleApp">1</Linker>
 			<Linker Name="DebugInfo">False</Linker>
 			<Linker Name="RemoteSymbols">False</Linker>
 			<Linker Name="GenerateDRC">False</Linker>
 			<Linker Name="MinStackSize">16384</Linker>
 			<Linker Name="MaxStackSize">1048576</Linker>
-			<Linker Name="ImageBase">4194304</Linker>
-			<Linker Name="ExeDescription"></Linker>  <Linker Name="GenerateHpps">False</Linker>
-    </Linker>
+			<Linker Name="ImageBase">7340032</Linker>
+			<Linker Name="ExeDescription">RTS Highlighter Extensions</Linker>
+		</Linker>
 		<Directories>
 			<Directories Name="OutputDir"></Directories>
 			<Directories Name="UnitOutputDir"></Directories>
 			<Directories Name="PackageDLLOutputDir"></Directories>
 			<Directories Name="PackageDCPOutputDir"></Directories>
-			<Directories Name="SearchPath">..\..\Templates</Directories>
-			<Directories Name="Packages">rtl;vcl;vcldb;dbrtl;vclx;dbxcds;dbexpress;IndySystem;IndyCore;VclSmp;IndyProtocols;dsnap;adortl;vclactnband;vclshlctrls;JvCustomD9R;JvSystemD9R;JvCoreD9R;DJcl;JvStdCtrlsD9R;dzConfigd9;PerlRegExD2005;SynEdit_R2005;SynUni_D2005;JvAppFrmD9R;JvBandsD9R;JvBDED9R;JvCmpD9R;JvCryptD9R;JvCtrlsD9R;JvDlgsD9R;JvDockingD9R;JvDotNetCtrlsD9R;JvEDID9R;JvGlobusD9R;JvHMID9R;JvInspectorD9R;JvInterpreterD9R;JvJansD9R;JvManagedThreadsD9R;JvMMD9R;JvNetD9R;JvPageCompsD9R;JvPluginD9R;JvPrintPreviewD9R;JvTimeFrameworkD9R;JvUIBD9R;JvValidatorsD9R;JvWizardD9R;JvXPCtrlsD9R;xmlrtl;vclie;inetdbbde;inet;inetdbxpress</Directories>
+			<Directories Name="SearchPath">..\templates;..\units</Directories>
+			<Directories Name="Packages"></Directories>
 			<Directories Name="Conditionals"></Directories>
 			<Directories Name="DebugSourceDirs"></Directories>
 			<Directories Name="UsePackages">False</Directories>
 		</Directories>
 		<Parameters>
 			<Parameters Name="RunParams"></Parameters>
-			<Parameters Name="HostApplication"></Parameters>
+			<Parameters Name="HostApplication">C:\Delphi7\Bin\delphi32.exe</Parameters>
 			<Parameters Name="Launcher"></Parameters>
 			<Parameters Name="UseLauncher">False</Parameters>
 			<Parameters Name="DebugCWD"></Parameters>
-			<Parameters Name="RemoteHost"></Parameters>
-			<Parameters Name="RemotePath"></Parameters>
-			<Parameters Name="RemoteLauncher"></Parameters>
-			<Parameters Name="RemoteCWD"></Parameters>
-			<Parameters Name="RemoteDebug">False</Parameters>  <Parameters Name="Debug Symbols Search Path"></Parameters>
-      <Parameters Name="LoadAllSymbols">True</Parameters>
-      <Parameters Name="LoadUnspecifiedSymbols">False</Parameters>
-    </Parameters>
+			<Parameters Name="Debug Symbols Search Path"></Parameters>
+			<Parameters Name="LoadAllSymbols">True</Parameters>
+			<Parameters Name="LoadUnspecifiedSymbols">False</Parameters>
+		</Parameters>
+		<Language>
+			<Language Name="ActiveLang"></Language>
+			<Language Name="ProjectLang">$00000000</Language>
+			<Language Name="RootDir">C:\Delphi7\Bin\</Language>
+		</Language>
 		<VersionInfo>
-			<VersionInfo Name="IncludeVerInfo">False</VersionInfo>
+			<VersionInfo Name="IncludeVerInfo">True</VersionInfo>
 			<VersionInfo Name="AutoIncBuild">False</VersionInfo>
 			<VersionInfo Name="MajorVer">1</VersionInfo>
 			<VersionInfo Name="MinorVer">0</VersionInfo>
@@ -152,17 +155,21 @@
 			<VersionInfo Name="PreRelease">False</VersionInfo>
 			<VersionInfo Name="Special">False</VersionInfo>
 			<VersionInfo Name="Private">False</VersionInfo>
-			<VersionInfo Name="DLL">False</VersionInfo>
-			<VersionInfo Name="Locale">1031</VersionInfo>
+			<VersionInfo Name="DLL">True</VersionInfo>
+			<VersionInfo Name="Locale">4105</VersionInfo>
 			<VersionInfo Name="CodePage">1252</VersionInfo>
 		</VersionInfo>
 		<VersionInfoKeys>
+			<VersionInfoKeys Name="CompanyName"></VersionInfoKeys>
+			<VersionInfoKeys Name="FileDescription"></VersionInfoKeys>
 			<VersionInfoKeys Name="FileVersion">1.0.0.0</VersionInfoKeys>
+			<VersionInfoKeys Name="InternalName"></VersionInfoKeys>
+			<VersionInfoKeys Name="LegalCopyright"></VersionInfoKeys>
+			<VersionInfoKeys Name="LegalTrademarks"></VersionInfoKeys>
+			<VersionInfoKeys Name="OriginalFilename"></VersionInfoKeys>
+			<VersionInfoKeys Name="ProductName"></VersionInfoKeys>
 			<VersionInfoKeys Name="ProductVersion">1.0.0.0</VersionInfoKeys>
-		</VersionInfoKeys>  <Language>
-      <Language Name="ActiveLang"></Language>
-      <Language Name="ProjectLang">$00000000</Language>
-      <Language Name="RootDir"></Language>
-    </Language>
-  </Delphi.Personality>
+			<VersionInfoKeys Name="Comments"></VersionInfoKeys>
+		</VersionInfoKeys>
+	</Delphi.Personality>
 </BorlandProject>

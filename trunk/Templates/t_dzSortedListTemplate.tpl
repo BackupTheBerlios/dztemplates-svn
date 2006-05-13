@@ -15,6 +15,8 @@ type
   _LIST_ANCESTOR_ = TInterfacedObject;
   {: Container type used to actually store the items: TList or TInterfacelist }
   _LIST_CONTAINER_ = TList;
+  {: The native item type of the list container (Pointer for TList, IInterface for TInterfaceList}
+  _LIST_CONTAINER_ITEM_TYPE_ = pointer; 
   {: The item type to be stored in the list }
   _ITEM_TYPE_ = TObject;
   {: The type of the item's keys }
@@ -105,7 +107,7 @@ begin
     end;
 
   // dupAccept:
-  FItems.Insert(Result, Pointer(_Item));
+  FItems.Insert(Result, _LIST_CONTAINER_ITEM_TYPE_(_Item));
 end;
 
 function _DZ_SORTED_LIST_TEMPLATE_.Search(_Key: _KEY_TYPE_; out _Idx: integer): boolean;

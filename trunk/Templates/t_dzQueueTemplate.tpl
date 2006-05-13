@@ -10,6 +10,7 @@ uses
 type
   _QUEUE_ITEM_ = integer;
   _QUEUE_CONTAINER_TYPE_ = TList;
+  _LIST_CONTAINER_ITEM_TYPE_ = Pointer;
   _QUEUE_ANCESTOR_ = TObject;
 
 {$ENDIF __QUEUE_TEMPLATE__}
@@ -64,7 +65,7 @@ end;
 
 procedure _QUEUE_TEMPLATE_.Enqueue(_Item: _QUEUE_ITEM_);
 begin
-  FList.Insert(0, pointer(_Item));
+  FList.Insert(0, _LIST_CONTAINER_ITEM_TYPE_(_Item));
 end;
 
 function _QUEUE_TEMPLATE_.Dequeue: _QUEUE_ITEM_;

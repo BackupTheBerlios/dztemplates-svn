@@ -33,6 +33,7 @@ uses
 type
   _LIST_ANCESTOR_ = TObject;
   _LIST_CONTAINER_ = TInterfaceList;
+  _LIST_CONTAINER_ITEM_TYPE_ = IInterface;
   _ITEM_TYPE_ = |itemtype|;
 {$INCLUDE 't_dzListTemplate.tpl'}
 

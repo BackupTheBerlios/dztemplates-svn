@@ -2,6 +2,8 @@ program MyItemIntListTest;
 
 {$APPTYPE CONSOLE}
 
+{%File '..\..\Templates\t_dzListInterfaceTemplate.tpl'}
+
 uses
   SysUtils,
   u_MyItem in '..\u_MyItem.pas',

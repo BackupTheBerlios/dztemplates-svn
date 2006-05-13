@@ -13,6 +13,8 @@ type
   _LIST_ANCESTOR_ = TInterfacedObject;
   {: This is the container type to store the items }
   _LIST_CONTAINER_ = TList;
+  {: The native item type of the list container (Pointer for TList, IInterface for TInterfaceList}
+  _LIST_CONTAINER_ITEM_TYPE_ = pointer; 
   _ITEM_TYPE_ = TMyItem;
 // _KEY_TYPE_ is declared as integer in the template
 

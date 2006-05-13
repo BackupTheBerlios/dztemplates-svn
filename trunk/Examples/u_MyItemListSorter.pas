@@ -1,5 +1,7 @@
 unit u_MyItemListSorter;
 
+// NOTE: This is work in progress, it does not yet compile!
+
 interface
 
 uses

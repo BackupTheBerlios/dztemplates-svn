@@ -33,6 +33,7 @@ uses
 type
   _QUEUE_ANCESTOR_ = TObject;
   _QUEUE_CONTAINER_TYPE_ = TList;
+  _LIST_CONTAINER_ITEM_TYPE_ = Pointer;
   _QUEUE_ITEM_ = |itemtype|;
 {$INCLUDE 't_dzQueueTemplate.tpl'}
 

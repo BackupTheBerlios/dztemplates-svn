@@ -32,6 +32,7 @@ uses
 {$DEFINE __OBJECT_STACK_TEMPLATE__}
 type
   _STACK_CONTAINER_TYPE_ = TList; // or TInterfaceList
+  _LIST_CONTAINER_ITEM_TYPE_ = pointer; // or IInterface
   _STACK_ANCESTOR_ = TObject; // or TInterfacedObject
   _STACK_ITEM_ = |itemtype|;
 {$INCLUDE 't_dzObjectStackTemplate.tpl'}

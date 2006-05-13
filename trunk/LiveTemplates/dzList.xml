@@ -33,6 +33,7 @@ uses
 type
   _LIST_ANCESTOR_ = TObject;
   _LIST_CONTAINER_ = TList;
+  _LIST_CONTAINER_ITEM_TYPE_ = pointer; 
   _ITEM_TYPE_ = |itemtype|;
 {$INCLUDE 't_dzListTemplate.tpl'}
 
@@ -41,7 +42,7 @@ type
   |listtype| = class(_DZ_LIST_TEMPLATE_)
   protected
     {: Frees a |itemtype| }
-    procedure FreeItem(_Item: |itemtype|); virtual;
+    procedure FreeItem(_Item: |itemtype|); override;
   end;
 
 implementation

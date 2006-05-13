@@ -9,6 +9,7 @@ uses
 type
   _STACK_ITEM_ = integer;
   _STACK_CONTAINER_TYPE_ = TList; // or TInterfaceList
+  _LIST_CONTAINER_ITEM_TYPE_ = pointer; // or IInterface
   _STACK_ANCESTOR_ = TObject; // or TInterfacedObject
 
 {$ENDIF __STACK_TEMPLATE__}
@@ -59,7 +60,7 @@ end;
 
 procedure _STACK_TEMPLATE_.Push(_Item: _STACK_ITEM_);
 begin
-  FList.Add(pointer(_Item));
+  FList.Add(_LIST_CONTAINER_ITEM_TYPE_(_Item));
 end;
 
 function _STACK_TEMPLATE_.Pop: _STACK_ITEM_;

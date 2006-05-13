@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+  <PersonalityInfo>
+    <Option>
+      <Option Name="Personality">Default.Personality</Option>
+      <Option Name="ProjectType"></Option>
+      <Option Name="Version">1.0</Option>
+      <Option Name="GUID">{E32972DB-4461-4AE2-AAB9-0818F524234A}</Option>
+    </Option>
+  </PersonalityInfo>
+  <Default.Personality>
+    
+    <Projects>
+      <Projects Name="HashTemplateUnitTests.exe">HashTemplateTest\HashTemplateUnitTests.bdsproj</Projects>
+      <Projects Name="ListTemplatesUnitTests.exe">ListTemplateTest\ListTemplatesUnitTests.bdsproj</Projects>
+      <Projects Name="QueueTemplatesUnitTests.exe">QueueTemplateTest\QueueTemplatesUnitTests.bdsproj</Projects>
+      <Projects Name="StackTemplatesUnitTests.exe">StackTemplateTest\StackTemplatesUnitTests.bdsproj</Projects>
+      <Projects Name="Targets">HashTemplateUnitTests.exe ListTemplatesUnitTests.exe QueueTemplatesUnitTests.exe StackTemplatesUnitTests.exe</Projects>
+    </Projects>
+    <Dependencies/>
+  </Default.Personality>
+</BorlandProject>

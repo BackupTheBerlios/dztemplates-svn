@@ -39,7 +39,7 @@ const
 
 type
   {: Hash for storing |itemtype| items }
-  |listtype| = class(_DZ_LIST_TEMPLATE_)
+  |listtype| = class(_HASH_TEMPLATE_)
   end;
 
 implementation

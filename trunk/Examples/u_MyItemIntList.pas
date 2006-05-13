@@ -12,6 +12,8 @@ type
   _LIST_ANCESTOR_ = TInterfacedObject;
   {: This is the container type to store the items }
   _LIST_CONTAINER_ = TInterfaceList;
+  {: The native item type of the list container (Pointer for TList, Interface for TInterfaceList}
+  _LIST_CONTAINER_ITEM_TYPE_ = IInterface; 
   {: This is the object type to be stored in the list }
   _ITEM_TYPE_ = IMyItem;
 {$INCLUDE 't_dzListTemplate.tpl'}

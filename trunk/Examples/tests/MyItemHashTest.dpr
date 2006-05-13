@@ -15,32 +15,32 @@ var
 
 begin
   ItemHash := TMyItemHash.Create;
-  Assert(not ItemHash.Exists('hallo'));
-  Assert(not ItemHash.Exists('welt'));
+  Assert(not ItemHash.Contains('hallo'));
+  Assert(not ItemHash.Contains('welt'));
 
   ItemHash['hallo'] := TMyItem.Create(0);
-  Assert(ItemHash.Exists('hallo'));
-  Assert(not ItemHash.Exists('welt'));
+  Assert(ItemHash.Contains('hallo'));
+  Assert(not ItemHash.Contains('welt'));
 
   ItemHash['welt'] := TMyItem.Create(1);
-  Assert(ItemHash.Exists('hallo'));
-  Assert(ItemHash.Exists('welt'));
+  Assert(ItemHash.Contains('hallo'));
+  Assert(ItemHash.Contains('welt'));
 
   with ItemHash['hallo'] do begin
     Assert(Key = 0);
     Free;
   end;
   ItemHash['hallo'] := nil;
-  Assert(not ItemHash.Exists('hallo'));
-  Assert(ItemHash.Exists('welt'));
+  Assert(not ItemHash.Contains('hallo'));
+  Assert(ItemHash.Contains('welt'));
 
   with ItemHash['welt'] do begin
     Assert(Key = 1);
     Free;
   end;
   ItemHash['welt'] := nil;
-  Assert(not ItemHash.Exists('hallo'));
-  Assert(not ItemHash.Exists('welt'));
+  Assert(not ItemHash.Contains('hallo'));
+  Assert(not ItemHash.Contains('welt'));
 
   ItemHash.Free;
 end.
