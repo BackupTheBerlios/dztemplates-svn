@@ -38,6 +38,8 @@ type
     constructor Create;
     {: Calls FreeItem for alle items and frees the list }
     destructor Destroy; override;
+    {: inserts an item a the given position }
+    procedure AtInsert(_Idx: integer; _Item: _ITEM_TYPE_);
     {: Returns the number of items stored in the list }
     function Count: integer;
     {: Deletes all items from the list without calling FreeItem }
@@ -48,6 +50,8 @@ type
     function Extract(_Idx: integer): _ITEM_TYPE_;
     {: Calls FreeItem for all items and removes them from the list }
     procedure FreeAll;
+    {: returns the index of the given item or -1 if it is not in the list }
+    function IndexOf(_Item: _ITEM_TYPE_): integer;
     {: inserts an item into the list and returns its index }
     function Insert(_Item: _ITEM_TYPE_): integer; virtual;
     {: allows accessing the items in the list by index }
@@ -130,6 +134,16 @@ end;
 function _DZ_LIST_TEMPLATE_.Insert(_Item: _ITEM_TYPE_): integer;
 begin
   Result := FItems.Add(_LIST_CONTAINER_ITEM_TYPE_(_Item));
+end;
+
+procedure _DZ_LIST_TEMPLATE_.AtInsert(_Idx: integer; _Item: _ITEM_TYPE_);
+begin
+  FItems.Insert(_Idx, _LIST_CONTAINER_ITEM_TYPE_(_Item));
+end;
+
+function _DZ_LIST_TEMPLATE_.IndexOf(_Item: _ITEM_TYPE_): integer;
+begin
+  Result := FItems.IndexOf(_LIST_CONTAINER_ITEM_TYPE_(_Item));
 end;
 
 {$ENDIF __DZ_LIST_TEMPLATE_SECOND_PASS__}
