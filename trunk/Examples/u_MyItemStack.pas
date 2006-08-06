@@ -11,6 +11,7 @@ uses
 type
   _STACK_ITEM_ = TMyItem;
   _STACK_CONTAINER_TYPE_ = TList;
+  _LIST_CONTAINER_ITEM_TYPE_ = pointer;
   _STACK_ANCESTOR_ = TObject;
 const
   _STACK_MAX_DEPTH_ = 150;

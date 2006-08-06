@@ -9,6 +9,7 @@ uses
 {$DEFINE __QUEUE_TEMPLATE__}
 type
   _QUEUE_ITEM_ = TMyItem;
+  _LIST_CONTAINER_ITEM_TYPE_ = pointer;
   _QUEUE_CONTAINER_TYPE_ = TList;
   _QUEUE_ANCESTOR_ = TObject;
 {$INCLUDE 't_dzQueueTemplate.tpl'}

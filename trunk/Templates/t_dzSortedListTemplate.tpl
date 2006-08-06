@@ -112,7 +112,7 @@ end;
 
 function _DZ_SORTED_LIST_TEMPLATE_.Search(_Key: _KEY_TYPE_; out _Idx: integer): boolean;
 begin
-  Result := BinarySearch(0, FItems.Count - 1, _Idx, _Key, CompareTo)
+  Result := BinarySearch(0, FItems.Count - 1, _Idx, _Key, CompareTo, FDuplicates = dupAccept);
 end;
 
 {$IFNDEF __DZ_SORTED_LIST_TEMPLATE_ITEM_TYPE_IS_INTEGER__}

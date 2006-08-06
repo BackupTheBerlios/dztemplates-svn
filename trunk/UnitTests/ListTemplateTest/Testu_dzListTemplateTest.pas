@@ -352,6 +352,8 @@ begin
 end;
 
 procedure TestTMySortedList.testInsertDupAccept;
+var
+  Idx: Integer;
 begin
   FMySortedList.Duplicates := dupAccept;
   Fill;
@@ -360,6 +362,13 @@ begin
   CheckEquals(INSERT_COUNT + 1, FMySortedList.Count, 'Count does not match');
 
   CheckEquals(INSERT_COUNT + 1, ItemCount, 'Number of created items does not match');
+
+  FMySortedList.Insert(TMyItem.Create(5));
+  CheckEquals(INSERT_COUNT + 2, FMySortedList.Count, 'Count does not match');
+  CheckTrue(FMySortedList.Search(5, Idx), 'result of search(5)');
+  CheckEquals(5, Idx, 'index of item(5)');
+
+  CheckEquals(INSERT_COUNT + 2, ItemCount, 'Number of created items does not match');
 end;
 
 procedure TestTMySortedList.InsertDupError;
