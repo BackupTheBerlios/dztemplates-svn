@@ -52,7 +52,11 @@ type
        @param Key is the sought item's key
        @param Idx is the index of the item, if found, only valid if the function returns true
        @returns true, if the item has been found, false otherwise }
-    function Search(_Key: _KEY_TYPE_; out _Idx: integer): boolean; overload;
+    function Search(_Key: _KEY_TYPE_; out _Idx: integer): boolean; overload; deprecated; // use Find instead
+    function Search(_Key: _KEY_TYPE_): boolean; overload; deprecated; // use Find instead
+    function Find(_Key: _KEY_TYPE_; out _Idx: integer): boolean; overload;
+    function Find(_Key: _KEY_TYPE_): boolean; overload;
+
 {$IFNDEF __DZ_SORTED_LIST_TEMPLATE_ITEM_TYPE_IS_INTEGER__}
     {: searches for the item with the given key
        @param Key is the sought item's key
@@ -60,7 +64,8 @@ type
        @returns true, if the item has been found, false otherwise
        @note: if ITEM_TYPE = integer we can not create overloaded Search methods,
               in this case declare the conditional define above in your unit. }
-    function Search(_Key: _KEY_TYPE_; out _Item: _ITEM_TYPE_): boolean; overload;
+    function Search(_Key: _KEY_TYPE_; out _Item: _ITEM_TYPE_): boolean; overload; deprecated; // use Find instead
+    function Find(_Key: _KEY_TYPE_; out _Item: _ITEM_TYPE_): boolean; overload;
 {$ENDIF __DZ_SORTED_LIST_TEMPLATE_ITEM_TYPE_IS_INTEGER__}
     {: determines what to do if trying to insert an item with a key that already exists
        in the list:
@@ -96,7 +101,7 @@ end;
 
 function _DZ_SORTED_LIST_TEMPLATE_.Insert(_Item: _ITEM_TYPE_): integer;
 begin
-  if Search(KeyOf(_Item), Result) then
+  if Find(KeyOf(_Item), Result) then
     case Duplicates of
     dupError:
       raise EListError.Create('List does not allow duplicates');
@@ -112,15 +117,39 @@ end;
 
 function _DZ_SORTED_LIST_TEMPLATE_.Search(_Key: _KEY_TYPE_; out _Idx: integer): boolean;
 begin
-  Result := BinarySearch(0, FItems.Count - 1, _Idx, _Key, CompareTo, FDuplicates = dupAccept);
+  Result := Find(_Key, _Idx);
+end;
+
+function _DZ_SORTED_LIST_TEMPLATE_.Search(_Key: _KEY_TYPE_): boolean;
+begin
+  Result := Find(_Key);
 end;
 
 {$IFNDEF __DZ_SORTED_LIST_TEMPLATE_ITEM_TYPE_IS_INTEGER__}
 function _DZ_SORTED_LIST_TEMPLATE_.Search(_Key: _KEY_TYPE_; out _Item: _ITEM_TYPE_): boolean;
+begin
+  Result := Find(_Key, _Item);
+end;
+{$ENDIF __DZ_SORTED_LIST_TEMPLATE_ITEM_TYPE_IS_INTEGER__}
+
+function _DZ_SORTED_LIST_TEMPLATE_.Find(_Key: _KEY_TYPE_; out _Idx: integer): boolean;
+begin
+  Result := BinarySearch(0, FItems.Count - 1, _Idx, _Key, CompareTo, FDuplicates = dupAccept);
+end;
+
+function _DZ_SORTED_LIST_TEMPLATE_.Find(_Key: _KEY_TYPE_): boolean;
 var
   Idx: integer;
 begin
-  Result := Search(_Key, Idx);
+  Result := Find(_Key, Idx);
+end;
+
+{$IFNDEF __DZ_SORTED_LIST_TEMPLATE_ITEM_TYPE_IS_INTEGER__}
+function _DZ_SORTED_LIST_TEMPLATE_.Find(_Key: _KEY_TYPE_; out _Item: _ITEM_TYPE_): boolean;
+var
+  Idx: integer;
+begin
+  Result := Find(_Key, Idx);
   if Result then
     _Item := _ITEM_TYPE_(FItems[Idx]);
 end;
