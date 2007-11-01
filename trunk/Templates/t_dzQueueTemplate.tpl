@@ -24,12 +24,15 @@ type
   public
     constructor Create;
     destructor Destroy; override;
-    {: This is just an alias for Enqueue }
+    {! This is just an alias for Enqueue }
     procedure Push(_Item: _QUEUE_ITEM_);
     procedure Enqueue(_Item: _QUEUE_ITEM_);
-    {: This is just an alias for Dequeue }
+    {! This is just an alias for Dequeue }
     function Pop: _QUEUE_ITEM_;
-    function  Dequeue: _QUEUE_ITEM_;
+    function Dequeue: _QUEUE_ITEM_; overload;
+    {! @returns true, if an item was dequeued, false otherwise
+       @param Item contains the dequeued item, only valid if result is true }
+    function Dequeue(out _Item: _QUEUE_ITEM_): boolean; overload;
     function Peek: _QUEUE_ITEM_;
     function IsEmpty: boolean;
     function Count: integer;
@@ -69,11 +72,26 @@ begin
 end;
 
 function _QUEUE_TEMPLATE_.Dequeue: _QUEUE_ITEM_;
+var
+  Idx: integer;
 begin
-  Assert(FList.Count >= 0);
+  Idx := FList.Count - 1;
+  Assert(Idx > 0);
 
-  Result := _QUEUE_ITEM_(FList[FList.Count - 1]);
-  FList.Delete(FList.Count - 1);
+  Result := _QUEUE_ITEM_(FList[Idx]);
+  FList.Delete(Idx);
+end;
+
+function _QUEUE_TEMPLATE_.Dequeue(out _Item: _QUEUE_ITEM_): boolean;
+var
+  Idx: integer;
+begin
+  Idx := FList.Count - 1;
+  Result := (Idx >= 0);
+  if Result then begin
+    _Item := _QUEUE_ITEM_(FList[Idx]);
+    FList.Delete(Idx);
+  end;
 end;
 
 function _QUEUE_TEMPLATE_.Peek: _QUEUE_ITEM_;
