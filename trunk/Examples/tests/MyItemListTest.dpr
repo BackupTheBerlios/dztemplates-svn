@@ -15,10 +15,14 @@ uses
 
 var
   MyItemList: TMyItemList;
-
+  MyItem: TMyItem;
 begin
   MyItemList := TMyItemList.Create;
   MyItemList.Insert(TMyItem.Create(0));
   MyItemList.Insert(TMyItem.Create(1));
+  for MyItem in MyItemList do begin
+    WriteLn(MyItem.Key);
+  end;
   MyItemList.Free;
 end.
+

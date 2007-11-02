@@ -15,7 +15,7 @@ type
   {: Container type used to actually store the items: TList or TInterfacelist }
   _LIST_CONTAINER_ = TList;
   {: The native item type of the list container (Pointer for TList, IInterface for TInterfaceList}
-  _LIST_CONTAINER_ITEM_TYPE_ = pointer; 
+  _LIST_CONTAINER_ITEM_TYPE_ = pointer;
   {: The item type to be stored in the list }
   _ITEM_TYPE_ = TObject;
 
@@ -25,6 +25,17 @@ type
 
 type
   _DZ_LIST_TEMPLATE_ = class(_LIST_ANCESTOR_)
+  private type
+    _DZ_LIST_TEMPLATE_ENUMERATOR_ = record
+    private
+      FIdx: integer;
+      FList: _DZ_LIST_TEMPLATE_;
+      function GetCurrent: _ITEM_TYPE_; inline;
+    public
+      constructor Create(_List: _DZ_LIST_TEMPLATE_);
+      function MoveNext: boolean; inline;
+      property Current: _ITEM_TYPE_ read GetCurrent;
+    end;
   private
     {: This actually stores the items }
     FItems: _LIST_CONTAINER_;
@@ -54,6 +65,7 @@ type
     function IndexOf(_Item: _ITEM_TYPE_): integer;
     {: inserts an item into the list and returns its index }
     function Insert(_Item: _ITEM_TYPE_): integer; virtual;
+    function GetEnumerator: _DZ_LIST_TEMPLATE_ENUMERATOR_;
     {: allows accessing the items in the list by index }
     property Items[_Idx: integer]: _ITEM_TYPE_ read _GetItems; default;
   end;
@@ -144,6 +156,29 @@ end;
 function _DZ_LIST_TEMPLATE_.IndexOf(_Item: _ITEM_TYPE_): integer;
 begin
   Result := FItems.IndexOf(_LIST_CONTAINER_ITEM_TYPE_(_Item));
+end;
+
+function _DZ_LIST_TEMPLATE_.GetEnumerator: _DZ_LIST_TEMPLATE_ENUMERATOR_;
+begin
+  Result := _DZ_LIST_TEMPLATE_ENUMERATOR_.Create(Self);
+end;
+
+constructor _DZ_LIST_TEMPLATE_._DZ_LIST_TEMPLATE_ENUMERATOR_.Create(_List: _DZ_LIST_TEMPLATE_);
+begin
+  FList := _List;
+  FIdx := -1;
+end;
+
+function _DZ_LIST_TEMPLATE_._DZ_LIST_TEMPLATE_ENUMERATOR_.GetCurrent: _ITEM_TYPE_;
+begin
+  Result := FList[FIdx];
+end;
+
+function _DZ_LIST_TEMPLATE_._DZ_LIST_TEMPLATE_ENUMERATOR_.MoveNext: boolean;
+begin
+  Result := (FIdx < FList.Count - 1);
+  if Result then
+    Inc(FIdx);
 end;
 
 {$ENDIF __DZ_LIST_TEMPLATE_SECOND_PASS__}
