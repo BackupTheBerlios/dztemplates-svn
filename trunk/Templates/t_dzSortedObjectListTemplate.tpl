@@ -3,14 +3,19 @@ unit t_dzSortedObjectListTemplate;
 
 interface
 
-{: any class built on this template must add these units to the uses clause }
+/// any class built on this template must add these units to the uses clause
 uses
   Classes,
   u_dzQuicksort;
 
-{: these types must be declared for any class built on this template }
+/// these types must be declared for any class built on this template
 type
-  _LIST_PARENT_ = TInterfacedObject; // or TObject or anything else you like
+   /// This is the list's ancestor class, can be a user defined class if you
+   /// want to inherit additional behaviour or TInterfacedObject if you
+   /// want the list to implement an interface
+  _LIST_PARENT_ = TObject;
+  /// The type of items to be stored in the list, must be TObject or a descendant
+  /// of TObject
   _ITEM_TYPE_ = TObject;
 
 {$ENDIF __DZ_SORTED_OBJECT_LIST_TEMPLATE__}
@@ -21,11 +26,11 @@ type
 {$INCLUDE 't_dzSortedListTemplate.tpl'}
 
 type
-  {: Extends _DZ_SORTED_LIST_TEMPLATE_ to call the item's Free method in FreeItem,
-     thereby allowing to store any TObject descendant. }
+  /// Extends _DZ_SORTED_LIST_TEMPLATE_ to call the item's Free method in FreeItem
+  /// thereby allowing to store any TObject descendant.
   _DZ_SORTED_OBJECT_LIST_TEMPLATE_ = class(_DZ_SORTED_LIST_TEMPLATE_)
   protected
-    {: calls the Item's Free method }
+    /// calls the Item's Free method
     procedure FreeItem(_Item: _ITEM_TYPE_); override;
   end;
 

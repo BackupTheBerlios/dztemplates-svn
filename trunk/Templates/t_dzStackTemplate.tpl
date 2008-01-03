@@ -7,26 +7,45 @@ uses
   Classes;
 
 type
+  /// The item type to store on the stack
   _STACK_ITEM_ = integer;
-  _STACK_CONTAINER_TYPE_ = TList; // or TInterfaceList
-  _LIST_CONTAINER_ITEM_TYPE_ = pointer; // or IInterface
-  _STACK_ANCESTOR_ = TObject; // or TInterfacedObject
+  /// the container type to actually store the items (TList or TInterfaceList)
+  _STACK_CONTAINER_TYPE_ = TList;
+  /// the native item type of the used container (pointer for TList, IInterface for TInterfaceList)
+  _LIST_CONTAINER_ITEM_TYPE_ = pointer;
+  /// the ancstor type of the stack class, can be TObject or any descendant
+  _STACK_ANCESTOR_ = TObject;
 
 {$ENDIF __STACK_TEMPLATE__}
 
 {$IFNDEF __STACK_TEMPLATE_SECOND_PASS__}
 
 type
+  /// implements a stack for storing _STACK_ITEM_ items
   _STACK_TEMPLATE_ = class(_STACK_ANCESTOR_)
   private
     FList: _STACK_CONTAINER_TYPE_;
   public
+    /// creates a new _STACK_TEMPLATE_ instance
     constructor Create;
     destructor Destroy; override;
+    /// adds a new item to the top of the stack
     procedure Push(_Item: _STACK_ITEM_);
-    function Pop: _STACK_ITEM_;
-    function Peek: _STACK_ITEM_;
+    /// removes the topmost item from the stack and returns it
+    function Pop: _STACK_ITEM_; overload;
+    /// remove the topmost item from the stack, if it exists
+    /// @param Item is the topmost item, only valid if result = true
+    /// @returns true, if the stack is not empty, false otherwise
+    function Pop(out _Item: _STACK_ITEM_): boolean; overload;
+    /// returns the topmost item from the stack without removing it
+    function Peek: _STACK_ITEM_; overload;
+    /// get the topmost item of the stack if it exists, without removing it
+    /// @Item is the topmost item, only valid if result = true
+    /// @returns true, if the stack is not empty, false otherwise
+    function Peek(out _Item: _STACK_ITEM_): boolean; overload;
+    /// returns true, if the stack is empty, false otherwise
     function IsEmpty: boolean;
+    /// returns the depth of the stack
     function Depth: integer;
   end;
   
@@ -71,11 +90,27 @@ begin
   FList.Delete(FList.Count - 1);
 end;
 
+function _STACK_TEMPLATE_.Pop(out _Item: _STACK_ITEM_): boolean;
+begin
+  Result := not IsEmpty;
+  if Result then begin
+    _Item := _STACK_ITEM_(FList[FList.Count - 1]);
+    FList.Delete(FList.Count - 1);
+  end;
+end;
+
 function _STACK_TEMPLATE_.Peek: _STACK_ITEM_;
 begin
   Assert(FList.Count >= 0);
 
   Result := _STACK_ITEM_(FList[FList.Count - 1]);
+end;
+
+function _STACK_TEMPLATE_.Peek(out _Item: _STACK_ITEM_): boolean; 
+begin
+  Result := not IsEmpty;
+  if Result then
+    _Item := _STACK_ITEM_(FList[FList.Count - 1]);
 end;
 
 function _STACK_TEMPLATE_.IsEmpty: boolean;

@@ -3,20 +3,20 @@ unit t_dzListTemplate;
 
 interface
 
-{: These units must be added to the uses clause of any class built on this template }
+/// These units must be added to the uses clause of any class built on this template
 uses
   Classes;
 
-{: These types must be declared for each class built on this template }
+/// These types must be declared for each class built on this template
 type
-  {: the ancestor class for the template, can be TObject or TInterfacedObject
-     or anything else you like}
+  /// the ancestor class for the template, can be TObject or TInterfacedObject
+  /// or anything else you like
   _LIST_ANCESTOR_ = TInterfacedObject;
-  {: Container type used to actually store the items: TList or TInterfacelist }
+  /// Container type used to actually store the items: TList or TInterfacelist
   _LIST_CONTAINER_ = TList;
-  {: The native item type of the list container (Pointer for TList, IInterface for TInterfaceList}
+  /// The native item type of the list container (Pointer for TList, IInterface for TInterfaceList
   _LIST_CONTAINER_ITEM_TYPE_ = pointer;
-  {: The item type to be stored in the list }
+  /// The item type to be stored in the list
   _ITEM_TYPE_ = TObject;
 
 {$ENDIF __DZ_LIST_TEMPLATE__}
@@ -26,6 +26,7 @@ type
 type
   _DZ_LIST_TEMPLATE_ = class(_LIST_ANCESTOR_)
   private type
+    /// This enumerator allows for..in style loops
     _DZ_LIST_TEMPLATE_ENUMERATOR_ = record
     private
       FIdx: integer;
@@ -37,36 +38,37 @@ type
       property Current: _ITEM_TYPE_ read GetCurrent;
     end;
   private
-    {: This actually stores the items }
+    /// This actually stores the items
     FItems: _LIST_CONTAINER_;
-    {: Getter function for Items property }
+    /// Getter function for Items property
     function _GetItems(_Idx: integer): _ITEM_TYPE_;
   protected
-    {: Frees an item (does nothing here, must be overwritten }
+    /// Frees an item (does nothing here, must be overwritten)
     procedure FreeItem(_Item: _ITEM_TYPE_); virtual;
   public
-    {: Creates a list for storing items }
+    /// Creates a list for storing items
     constructor Create;
-    {: Calls FreeItem for alle items and frees the list }
+    /// Calls FreeItem for alle items and frees the list
     destructor Destroy; override;
-    {: inserts an item a the given position }
+    /// inserts an item a the given position
     procedure AtInsert(_Idx: integer; _Item: _ITEM_TYPE_);
-    {: Returns the number of items stored in the list }
+    /// Returns the number of items stored in the list
     function Count: integer;
-    {: Deletes all items from the list without calling FreeItem }
+    /// Deletes all items from the list without calling FreeItem, see also FreeAll
     procedure DeleteAll;
-    {: Exchanges the two items at index Idx1 and Idx2 }
+    /// Exchanges the two items at index Idx1 and Idx2
     procedure Exchange(_Idx1, _Idx2: integer);
-    {: removes the item with index Idx from the list and returns it }
+    /// removes the item with index Idx from the list and returns it
     function Extract(_Idx: integer): _ITEM_TYPE_;
-    {: Calls FreeItem for all items and removes them from the list }
+    /// Calls FreeItem for all items and removes them from the list 
     procedure FreeAll;
-    {: returns the index of the given item or -1 if it is not in the list }
+    /// returns the index of the given item or -1 if it is not in the list
     function IndexOf(_Item: _ITEM_TYPE_): integer;
-    {: inserts an item into the list and returns its index }
+    /// inserts an item into the list and returns its index
     function Insert(_Item: _ITEM_TYPE_): integer; virtual;
+    /// allows for..in style loops
     function GetEnumerator: _DZ_LIST_TEMPLATE_ENUMERATOR_;
-    {: allows accessing the items in the list by index }
+    /// allows accessing the items in the list by index
     property Items[_Idx: integer]: _ITEM_TYPE_ read _GetItems; default;
   end;
 

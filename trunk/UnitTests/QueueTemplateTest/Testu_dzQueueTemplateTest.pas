@@ -27,8 +27,8 @@ type
     procedure SetUp; override;
     procedure TearDown; override;
   published
-    procedure testPush;
-    procedure testPop;
+    procedure testEnqueue;
+    procedure testDequeue;
   end;
 
 implementation
@@ -47,7 +47,7 @@ begin
   FMyItemQueue := nil;
 end;
 
-procedure TestTMyItemQueue.testPush;
+procedure TestTMyItemQueue.testEnqueue;
 var
   i: integer;
   Item: TMyItem;
@@ -55,25 +55,25 @@ begin
   CheckEquals(true, FMyItemQueue.IsEmpty);
   CheckEquals(0, FMyItemQueue.Count);
   for i := 1 to MAX_COUNT do begin
-    FMyItemQueue.Push(TMyItem.Create(i));
+    FMyItemQueue.Enqueue(TMyItem.Create(i));
     CheckEquals(i, FMyItemQueue.Count);
     Item := FMyItemQueue.Peek;
     CheckEquals(1, Item.Key);
   end;
 end;
 
-procedure TestTMyItemQueue.testPop;
+procedure TestTMyItemQueue.testDequeue;
 var
   Item: TMyItem;
   i: integer;
 begin
-  testPush;
+  testEnqueue;
   CheckEquals(MAX_COUNT, FMyItemQueue.Count);
   for i := MAX_COUNT downto 1 do begin
     Item := FMyItemQueue.Peek;
     CheckEquals(i, FMyItemQueue.Count);
     CheckEquals(MAX_COUNT - i + 1, Item.Key);
-    Item := FMyItemQueue.Pop;
+    Item := FMyItemQueue.Dequeue;
     CheckEquals(i - 1, FMyItemQueue.Count);
     CheckEquals(MAX_COUNT - i + 1, Item.Key);
     Item.Free;

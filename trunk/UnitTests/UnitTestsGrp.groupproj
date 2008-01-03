@@ -1,0 +1,64 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{f9e80f4e-a38e-491c-acee-c9a4334e75d2}</ProjectGuid>
+  </PropertyGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Projects Include="HashTemplateTest\HashTemplateUnitTests.dproj" />
+    <Projects Include="ListTemplateTest\ListTemplatesUnitTests.dproj" />
+    <Projects Include="QueueTemplateTest\QueueTemplatesUnitTests.dproj" />
+    <Projects Include="StackTemplateTest\StackTemplatesUnitTests.dproj" />
+  </ItemGroup>
+  <ProjectExtensions>
+    <Borland.Personality>Default.Personality</Borland.Personality>
+    <Borland.ProjectType />
+    <BorlandProject>
+  <BorlandProject xmlns=""> <Default.Personality> </Default.Personality> </BorlandProject></BorlandProject>
+  </ProjectExtensions>
+  <Target Name="HashTemplateUnitTests">
+    <MSBuild Projects="HashTemplateTest\HashTemplateUnitTests.dproj" Targets="" />
+  </Target>
+  <Target Name="HashTemplateUnitTests:Clean">
+    <MSBuild Projects="HashTemplateTest\HashTemplateUnitTests.dproj" Targets="Clean" />
+  </Target>
+  <Target Name="HashTemplateUnitTests:Make">
+    <MSBuild Projects="HashTemplateTest\HashTemplateUnitTests.dproj" Targets="Make" />
+  </Target>
+  <Target Name="ListTemplatesUnitTests">
+    <MSBuild Projects="ListTemplateTest\ListTemplatesUnitTests.dproj" Targets="" />
+  </Target>
+  <Target Name="ListTemplatesUnitTests:Clean">
+    <MSBuild Projects="ListTemplateTest\ListTemplatesUnitTests.dproj" Targets="Clean" />
+  </Target>
+  <Target Name="ListTemplatesUnitTests:Make">
+    <MSBuild Projects="ListTemplateTest\ListTemplatesUnitTests.dproj" Targets="Make" />
+  </Target>
+  <Target Name="QueueTemplatesUnitTests">
+    <MSBuild Projects="QueueTemplateTest\QueueTemplatesUnitTests.dproj" Targets="" />
+  </Target>
+  <Target Name="QueueTemplatesUnitTests:Clean">
+    <MSBuild Projects="QueueTemplateTest\QueueTemplatesUnitTests.dproj" Targets="Clean" />
+  </Target>
+  <Target Name="QueueTemplatesUnitTests:Make">
+    <MSBuild Projects="QueueTemplateTest\QueueTemplatesUnitTests.dproj" Targets="Make" />
+  </Target>
+  <Target Name="StackTemplatesUnitTests">
+    <MSBuild Projects="StackTemplateTest\StackTemplatesUnitTests.dproj" Targets="" />
+  </Target>
+  <Target Name="StackTemplatesUnitTests:Clean">
+    <MSBuild Projects="StackTemplateTest\StackTemplatesUnitTests.dproj" Targets="Clean" />
+  </Target>
+  <Target Name="StackTemplatesUnitTests:Make">
+    <MSBuild Projects="StackTemplateTest\StackTemplatesUnitTests.dproj" Targets="Make" />
+  </Target>
+  <Target Name="Build">
+    <CallTarget Targets="HashTemplateUnitTests;ListTemplatesUnitTests;QueueTemplatesUnitTests;StackTemplatesUnitTests" />
+  </Target>
+  <Target Name="Clean">
+    <CallTarget Targets="HashTemplateUnitTests:Clean;ListTemplatesUnitTests:Clean;QueueTemplatesUnitTests:Clean;StackTemplatesUnitTests:Clean" />
+  </Target>
+  <Target Name="Make">
+    <CallTarget Targets="HashTemplateUnitTests:Make;ListTemplatesUnitTests:Make;QueueTemplatesUnitTests:Make;StackTemplatesUnitTests:Make" />
+  </Target>
+  <Import Condition="Exists('$(MSBuildBinPath)\Borland.Group.Targets')" Project="$(MSBuildBinPath)\Borland.Group.Targets" />
+</Project>

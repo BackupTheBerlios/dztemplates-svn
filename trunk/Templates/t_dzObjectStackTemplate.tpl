@@ -19,6 +19,8 @@ type
 {$INCLUDE 't_dzStackTemplate.tpl'}
 
 type
+  /// extends _STACK_TEMPLATE_ to store objects on the stack.
+  /// the destructor frees all items left on the stack by calling their Free method
   _OBJECT_STACK_TEMPLATE_ = class(_STACK_TEMPLATE_)
   public
     destructor Destroy; override;

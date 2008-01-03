@@ -8,9 +8,15 @@ uses
   u_MyItem;
 
 type
-  _HASH_ANCESTOR_ = TObject; // or TInterfacedObject
+   /// This is the hash's ancestor class, can be a user defined class if you
+   /// want to inherit additional behaviour or TInterfacedObject if you
+   /// want the hash to implement an interface
+  _HASH_ANCESTOR_ = TObject;
+  /// The type of items to be stored in the hash, must be TObject or a descendant
+  /// of TObject
   _HASH_ITEM_ = TMyItem;
 const
+  /// value to return if no item was found
   _HASH_EMPTY_ITEM_ = nil;
 
 {$ENDIF __HASH_TEMPLATE__}
@@ -18,23 +24,40 @@ const
 {$IFNDEF __HASH_TEMPLATE_SECOND_PASS__}
 
 type
+  /// stores items indexed by a string value
   _HASH_TEMPLATE_ = class(_HASH_ANCESTOR_)
   private
+    /// stores the actual items
     FList: TStringList;
+    /// setter method for the Values property
     procedure SetValues(const _Key: string; _Item: _HASH_ITEM_);
+    /// getter method for the Values property
     function GetValues(const _Key: string): _HASH_ITEM_;
+    /// getter method for the Keys property
     function GetKeys(_Idx: integer): string;
+    /// getter method for the Items property
     function GetItems(_Idx: integer): _HASH_ITEM_;
   public
+    /// creates a new _HASH_TEMPLATE_ instance
     constructor Create;
     destructor Destroy; override;
+    /// checks whether the hash contains the given key
     function Contains(const _Key: string): boolean;
+    /// removes the item with the given key from the hash and returns it
+    /// if no item is found, returns _HASH_EMPTY_ITEM_ (= nil)
     function Extract(const _Key: string): _HASH_ITEM_;
+    /// checks if an item is in the hash and returns its key if it exists
     function FindKeyOf(_Item: _HASH_ITEM_; out _Key: string): boolean;
+    /// returns the keys of all items in the hash
     function GetAllKeys(_Keys: TStrings): integer;
+    /// returns the number of items in the hash
     function Count: integer;
+    /// returns the key of the Idx th item
     property Keys[_Idx: integer]: string read GetKeys;
+    /// returns the Idxth item
     property Items[_Idx: integer]: _HASH_ITEM_ read GetItems;
+    /// returns the item that belongs to the given key
+    /// if no item is found, returns _HASH_EMPTY_ITEM_ (= nil)
     property Values[const _Key: string]: _HASH_ITEM_ read GetValues write SetValues; default;
   end;
 

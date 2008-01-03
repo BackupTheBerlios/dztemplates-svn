@@ -73,8 +73,8 @@ type
     procedure testDeleteAll;
     procedure testExtract;
     procedure testFreeAll;
-    procedure testSearchIdx;
-    procedure testSearchItem;
+    procedure testFindIdx;
+    procedure testFindItem;
   end;
 
   // Test methods for class IMyItemIntList
@@ -113,8 +113,8 @@ type
     procedure testDeleteAll;
     procedure testExtract;
     procedure testFreeAll;
-    procedure testSearchIdx;
-    procedure testSearchItem;
+    procedure testFindIdx;
+    procedure testFindItem;
   end;
 
 implementation
@@ -365,7 +365,7 @@ begin
 
   FMySortedList.Insert(TMyItem.Create(5));
   CheckEquals(INSERT_COUNT + 2, FMySortedList.Count, 'Count does not match');
-  CheckTrue(FMySortedList.Search(5, Idx), 'result of search(5)');
+  CheckTrue(FMySortedList.Find(5, Idx), 'result of Find(5)');
   CheckEquals(5, Idx, 'index of item(5)');
 
   CheckEquals(INSERT_COUNT + 2, ItemCount, 'Number of created items does not match');
@@ -398,23 +398,23 @@ begin
   FExpectedItemLeak := 1;
 end;
 
-procedure TestTMySortedList.testSearchIdx;
+procedure TestTMySortedList.testFindIdx;
 var
   Idx: integer;
 begin
   Fill;
 
-  CheckTrue(FMySortedList.Search(5, Idx), 'item not found');
+  CheckTrue(FMySortedList.Find(5, Idx), 'item not found');
   CheckEquals(5, Idx, 'Item does not have expected index');
 end;
 
-procedure TestTMySortedList.testSearchItem;
+procedure TestTMySortedList.testFindItem;
 var
   Item: u_MyItem.TMyItem;
 begin
   Fill;
 
-  CheckTrue(FMySortedList.Search(5, Item), 'item not found');
+  CheckTrue(FMySortedList.Find(5, Item), 'item not found');
   CheckEquals(5, Item.Key, 'Item does not have expected Key');
 end;
 
@@ -600,23 +600,23 @@ begin
   CheckEquals(INSERT_COUNT, ItemCount, 'Number of created items does not match');
 end;
 
-procedure TestTMyItemIntSortedList.testSearchIdx;
+procedure TestTMyItemIntSortedList.testFindIdx;
 var
   Idx: integer;
 begin
   Fill;
 
-  CheckTrue(FMyItemIntSortedList.Search(5, Idx), 'item not found');
+  CheckTrue(FMyItemIntSortedList.Find(5, Idx), 'item not found');
   CheckEquals(5, Idx, 'Item does not have expected index');
 end;
 
-procedure TestTMyItemIntSortedList.testSearchItem;
+procedure TestTMyItemIntSortedList.testFindItem;
 var
   Item: u_MyItem.IMyItem;
 begin
   Fill;
 
-  CheckTrue(FMyItemIntSortedList.Search(5, Item), 'item not found');
+  CheckTrue(FMyItemIntSortedList.Find(5, Item), 'item not found');
   CheckEquals(5, Item.Key, 'Item does not have expected Key');
 end;
 

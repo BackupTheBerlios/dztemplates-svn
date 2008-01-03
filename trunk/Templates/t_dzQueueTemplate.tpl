@@ -8,9 +8,13 @@ uses
   u_MyItem;
 
 type
+  /// The type of items to be stored in the queue
   _QUEUE_ITEM_ = integer;
+  /// the container used to actually store the items, TList or TInterfaceList
   _QUEUE_CONTAINER_TYPE_ = TList;
+  /// the item type stored in the container
   _LIST_CONTAINER_ITEM_TYPE_ = Pointer;
+  /// the ancestor class for the queue, can be TObject or any descendant
   _QUEUE_ANCESTOR_ = TObject;
 
 {$ENDIF __QUEUE_TEMPLATE__}
@@ -18,23 +22,32 @@ type
 {$IFNDEF __QUEUE_TEMPLATE_SECOND_PASS__}
 
 type
+  /// Template for a queue for storing _QUEUE_ITEM_ items
   _QUEUE_TEMPLATE_ = class(_QUEUE_ANCESTOR_)
   private
+    /// actually store the items
     FList: _QUEUE_CONTAINER_TYPE_;
   public
+    /// Creates a new _QUEUE_TEMPLATE_ instance
     constructor Create;
     destructor Destroy; override;
-    {! This is just an alias for Enqueue }
-    procedure Push(_Item: _QUEUE_ITEM_);
+    /// adds an item to the end of the queue
     procedure Enqueue(_Item: _QUEUE_ITEM_);
-    {! This is just an alias for Dequeue }
-    function Pop: _QUEUE_ITEM_;
+    /// removes the first item from the queue and returns it
     function Dequeue: _QUEUE_ITEM_; overload;
-    {! @returns true, if an item was dequeued, false otherwise
-       @param Item contains the dequeued item, only valid if result is true }
+    /// removes the first item from the queue
+    /// @param Item contains the dequeued item, only valid if result is true 
+    /// @returns true, if an item was dequeued, false otherwise
     function Dequeue(out _Item: _QUEUE_ITEM_): boolean; overload;
-    function Peek: _QUEUE_ITEM_;
+    /// returns the first item in the queue without removing it
+    function Peek: _QUEUE_ITEM_; overload;
+    /// returns the first item in the queue without removing it
+    /// @param Item is the first item, only valid if result is true
+    /// @returns true, if the queue was not emtpy, false otherwise
+    function Peek(out _Item: _QUEUE_ITEM_): boolean; overload;
+    /// returns true, if the queue is emtpy, false otherwise
     function IsEmpty: boolean;
+    /// returns the length of the queue
     function Count: integer;
   end;
 
@@ -76,7 +89,7 @@ var
   Idx: integer;
 begin
   Idx := FList.Count - 1;
-  Assert(Idx > 0);
+  Assert(Idx >= 0);
 
   Result := _QUEUE_ITEM_(FList[Idx]);
   FList.Delete(Idx);
@@ -101,19 +114,16 @@ begin
   Result := _QUEUE_ITEM_(FList[FList.Count - 1]);
 end;
 
+function _QUEUE_TEMPLATE_.Peek(out _Item: _QUEUE_ITEM_): boolean;
+begin
+  Result := not IsEmpty;
+  if Result then
+    _Item := _QUEUE_ITEM_(FList[FList.Count - 1]);
+end;
+
 function _QUEUE_TEMPLATE_.IsEmpty: boolean;
 begin
   Result := (FList.Count = 0);
-end;
-
-procedure _QUEUE_TEMPLATE_.Push(_Item: _QUEUE_ITEM_);
-begin
-  Enqueue(_Item);
-end;
-
-function _QUEUE_TEMPLATE_.Pop: _QUEUE_ITEM_;
-begin
-  Result := Dequeue;
 end;
 
 {$ENDIF __QUEUE_TEMPLATE_SECOND_PASS__}

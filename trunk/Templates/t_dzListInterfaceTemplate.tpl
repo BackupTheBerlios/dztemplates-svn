@@ -3,32 +3,32 @@ unit t_dzListInterfaceTemplate;
 
 interface
 
-{: These types must be declared any the class based on this template }
+/// These types must be declared by the class based on this template
 type
-  {: the object type to be stored in the list }
+  /// the object type to be stored in the list
   _ITEM_TYPE_ = TObject;
 {$ENDIF __DZ_LIST_INTERFACE_TEMPLATE__}
 
 {$IFNDEF __DZ_LIST_INTERFACE_TEMPLATE_SECOND_PASS__}
 
 type
-  {: This interface declares all public methods a _DZ_LIST_TEMPLATE_ implements }
+  /// This interface declares all public methods a _DZ_LIST_TEMPLATE_ implements
   _DZ_LIST_INTERFACE_TEMPLATE_ = interface
-    {: Getter method for the Items property }
+    /// Getter method for the Items property
     function _GetItems(_Idx: integer): _ITEM_TYPE_;
-    {: Returns the number of items stored in the list }
+    /// Returns the number of items stored in the list
     function Count: integer;
-    {: Deletes all items from the list without calling FreeItem }
+    /// Deletes all items from the list without calling FreeItem, see also FreeAll
     procedure DeleteAll;
-    {: Exchanges the two items at index Idx1 and Idx2 }
+    /// Exchanges the two items at index Idx1 and Idx2
     procedure Exchange(_Idx1, _Idx2: integer);
-    {: removes the item with index Idx from the list and returns it }
+    /// removes the item with index Idx from the list and returns it
     function Extract(_Idx: integer): _ITEM_TYPE_;
-    {: Calls FreeItem for all items and removes them from the list }
+    /// Calls FreeItem for all items and removes them from the list
     procedure FreeAll;
-    {: inserts an item into the list and returns its index }
+    /// inserts an item into the list and returns its index
     function Insert(_Item: _ITEM_TYPE_): integer;
-    {: allows accessing the items in the list by index }
+    /// allows accessing the items in the list by index
     property Items[_Idx: integer]: _ITEM_TYPE_ read _GetItems; default;
   end;
 
