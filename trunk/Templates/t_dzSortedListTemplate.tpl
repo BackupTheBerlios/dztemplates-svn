@@ -51,7 +51,7 @@ type
     constructor Create;
     /// Inserts an item at the position determined by comparing its key with the existing
     /// items.
-    function Insert(_Item: _ITEM_TYPE_): integer; override;
+    function Add(_Item: _ITEM_TYPE_): integer; override;
     /// searches for the item with the given Key
     /// @param Key is the sought item's key
     /// @param Idx is the index of the item, if found, only valid if the function returns true
@@ -98,7 +98,7 @@ implementation
 
 function _DZ_SORTED_LIST_TEMPLATE_.CompareTo(const _Key; _Idx: integer): integer;
 begin
-  Result :=  Compare(_KEY_TYPE_(_Key), KeyOf(_ITEM_TYPE_(FItems[_Idx])));
+  Result := Compare(_KEY_TYPE_(_Key), KeyOf(_ITEM_TYPE_(FItems[_Idx])));
 end;
 
 constructor _DZ_SORTED_LIST_TEMPLATE_.Create;
@@ -107,19 +107,21 @@ begin
   FDuplicates := dupError;
 end;
 
-function _DZ_SORTED_LIST_TEMPLATE_.Insert(_Item: _ITEM_TYPE_): integer;
+function _DZ_SORTED_LIST_TEMPLATE_.Add(_Item: _ITEM_TYPE_): integer;
 begin
-  if Find(KeyOf(_Item), Result) then
+  if Find(KeyOf(_Item), Result) then begin
     case Duplicates of
-    dupError:
-      raise EListError.Create('List does not allow duplicates');
-    dupIgnore: begin
-        Result := -1;
-        exit;
-      end;
+      dupError:
+        raise EListError.Create('List does not allow duplicates');
+      dupIgnore: begin
+          Result := -1;
+          exit;
+        end;
     end;
-
-  // dupAccept:
+    // dupAccept:
+    while (Result < Count) and (Compare(KeyOf(_Item), KeyOf(_ITEM_TYPE_(FItems[Result]))) = 0) do
+      Inc(Result);
+  end;
   FItems.Insert(Result, _LIST_CONTAINER_ITEM_TYPE_(_Item));
 end;
 
@@ -134,6 +136,7 @@ begin
 end;
 
 {$IFNDEF __DZ_SORTED_LIST_TEMPLATE_ITEM_TYPE_IS_INTEGER__}
+
 function _DZ_SORTED_LIST_TEMPLATE_.Search(_Key: _KEY_TYPE_; out _Item: _ITEM_TYPE_): boolean;
 begin
   Result := Find(_Key, _Item);
@@ -153,6 +156,7 @@ begin
 end;
 
 {$IFNDEF __DZ_SORTED_LIST_TEMPLATE_ITEM_TYPE_IS_INTEGER__}
+
 function _DZ_SORTED_LIST_TEMPLATE_.Find(_Key: _KEY_TYPE_; out _Item: _ITEM_TYPE_): boolean;
 var
   Idx: integer;

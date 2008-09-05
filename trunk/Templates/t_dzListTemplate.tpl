@@ -25,6 +25,7 @@ type
 
 type
   _DZ_LIST_TEMPLATE_ = class(_LIST_ANCESTOR_)
+  {(*}
   private type
     /// This enumerator allows for..in style loops
     _DZ_LIST_TEMPLATE_ENUMERATOR_ = record
@@ -37,6 +38,7 @@ type
       function MoveNext: boolean; inline;
       property Current: _ITEM_TYPE_ read GetCurrent;
     end;
+  {*)}
   private
     /// This actually stores the items
     FItems: _LIST_CONTAINER_;
@@ -60,12 +62,14 @@ type
     procedure Exchange(_Idx1, _Idx2: integer);
     /// removes the item with index Idx from the list and returns it
     function Extract(_Idx: integer): _ITEM_TYPE_;
-    /// Calls FreeItem for all items and removes them from the list 
+    /// Calls FreeItem for all items and removes them from the list
     procedure FreeAll;
     /// returns the index of the given item or -1 if it is not in the list
     function IndexOf(_Item: _ITEM_TYPE_): integer;
     /// inserts an item into the list and returns its index
-    function Insert(_Item: _ITEM_TYPE_): integer; virtual;
+    function Insert(_Item: _ITEM_TYPE_): integer; deprecated; // use Add instead
+    /// adds an item into the list and returns its index
+    function Add(_Item: _ITEM_TYPE_): integer; virtual;
     /// allows for..in style loops
     function GetEnumerator: _DZ_LIST_TEMPLATE_ENUMERATOR_;
     /// allows accessing the items in the list by index
@@ -146,6 +150,11 @@ begin
 end;
 
 function _DZ_LIST_TEMPLATE_.Insert(_Item: _ITEM_TYPE_): integer;
+begin
+  Result := Add(_Item);
+end;
+
+function _DZ_LIST_TEMPLATE_.Add(_Item: _ITEM_TYPE_): integer;
 begin
   Result := FItems.Add(_LIST_CONTAINER_ITEM_TYPE_(_Item));
 end;

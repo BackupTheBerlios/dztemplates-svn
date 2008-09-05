@@ -12,12 +12,13 @@
     <Projects Include="MyItemSortedListTest.dproj" />
     <Projects Include="MyItemSorterTest.dproj" />
     <Projects Include="MyItemStackTest.dproj" />
+    <Projects Include="StringQueueTest.dproj" />
   </ItemGroup>
   <ProjectExtensions>
     <Borland.Personality>Default.Personality</Borland.Personality>
     <Borland.ProjectType />
     <BorlandProject>
-  <BorlandProject xmlns=""> <Default.Personality> </Default.Personality> </BorlandProject></BorlandProject>
+<BorlandProject xmlns=""><Default.Personality></Default.Personality></BorlandProject></BorlandProject>
   </ProjectExtensions>
   <Target Name="MyItemHashTest">
     <MSBuild Projects="MyItemHashTest.dproj" Targets="" />
@@ -91,14 +92,23 @@
   <Target Name="MyItemStackTest:Make">
     <MSBuild Projects="MyItemStackTest.dproj" Targets="Make" />
   </Target>
+  <Target Name="StringQueueTest">
+    <MSBuild Projects="StringQueueTest.dproj" Targets="" />
+  </Target>
+  <Target Name="StringQueueTest:Clean">
+    <MSBuild Projects="StringQueueTest.dproj" Targets="Clean" />
+  </Target>
+  <Target Name="StringQueueTest:Make">
+    <MSBuild Projects="StringQueueTest.dproj" Targets="Make" />
+  </Target>
   <Target Name="Build">
-    <CallTarget Targets="MyItemHashTest;MyItemIntListTest;MyItemListTest;MyItemQueueTest;MyItemSortedIntListTest;MyItemSortedListTest;MyItemSorterTest;MyItemStackTest" />
+    <CallTarget Targets="MyItemHashTest;MyItemIntListTest;MyItemListTest;MyItemQueueTest;MyItemSortedIntListTest;MyItemSortedListTest;MyItemSorterTest;MyItemStackTest;StringQueueTest" />
   </Target>
   <Target Name="Clean">
-    <CallTarget Targets="MyItemHashTest:Clean;MyItemIntListTest:Clean;MyItemListTest:Clean;MyItemQueueTest:Clean;MyItemSortedIntListTest:Clean;MyItemSortedListTest:Clean;MyItemSorterTest:Clean;MyItemStackTest:Clean" />
+    <CallTarget Targets="MyItemHashTest:Clean;MyItemIntListTest:Clean;MyItemListTest:Clean;MyItemQueueTest:Clean;MyItemSortedIntListTest:Clean;MyItemSortedListTest:Clean;MyItemSorterTest:Clean;MyItemStackTest:Clean;StringQueueTest:Clean" />
   </Target>
   <Target Name="Make">
-    <CallTarget Targets="MyItemHashTest:Make;MyItemIntListTest:Make;MyItemListTest:Make;MyItemQueueTest:Make;MyItemSortedIntListTest:Make;MyItemSortedListTest:Make;MyItemSorterTest:Make;MyItemStackTest:Make" />
+    <CallTarget Targets="MyItemHashTest:Make;MyItemIntListTest:Make;MyItemListTest:Make;MyItemQueueTest:Make;MyItemSortedIntListTest:Make;MyItemSortedListTest:Make;MyItemSorterTest:Make;MyItemStackTest:Make;StringQueueTest:Make" />
   </Target>
   <Import Condition="Exists('$(MSBuildBinPath)\Borland.Group.Targets')" Project="$(MSBuildBinPath)\Borland.Group.Targets" />
 </Project>

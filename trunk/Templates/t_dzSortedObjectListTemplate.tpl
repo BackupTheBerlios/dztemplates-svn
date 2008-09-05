@@ -23,6 +23,10 @@ type
 {$IFNDEF __DZ_SORTED_OBJECT_LIST_TEMPLATE_SECOND_PASS__}
 
 {$DEFINE __DZ_SORTED_LIST_TEMPLATE__}
+type
+  _LIST_CONTAINER_ = TList;
+  _LIST_CONTAINER_ITEM_TYPE_ = pointer;
+
 {$INCLUDE 't_dzSortedListTemplate.tpl'}
 
 type

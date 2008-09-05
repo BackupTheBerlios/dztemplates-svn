@@ -37,6 +37,14 @@ function BinarySearch(_Left, _Right: integer; var _Index: integer;
   _Key: pointer; _CompareMeth: TCompareToItemMeth2;
   _Duplicates: boolean = false): boolean; overload;
 
+type
+  ICompareToKey = interface ['{CEB61050-D71F-4F67-B9BC-FD496A079F75}']
+    function CompareTo(_Idx: integer): integer;
+  end;
+
+function BinarySearch(_Left, _Right: integer; var _Index: integer;
+  _CompareInt: ICompareToKey; _Duplicates: boolean = false): boolean; overload;
+
 implementation
 
 procedure QuickSort(_Left, _Right: integer; _CompareMeth: TCompareItemsMeth;
@@ -55,17 +63,16 @@ begin
         Inc(I);
       while _CompareMeth(J, P) > 0 do
         Dec(J);
-      if I <= J then
-        begin
-          if I < J then
-            _SwapMeth(I, J);
-          if P = I then
-            P := J
-          else if P = J then
-            P := I;
-          Inc(I);
-          Dec(J);
-        end;
+      if I <= J then begin
+        if I < J then
+          _SwapMeth(I, J);
+        if P = I then
+          P := J
+        else if P = J then
+          P := I;
+        Inc(I);
+        Dec(J);
+      end;
     until I > J;
     if _Left < J then
       QuickSort(_Left, J, _CompareMeth, _SwapMeth);
@@ -80,23 +87,20 @@ var
   p, c: LongInt;
 begin
   Result := False;
-  while _Left <= _Right do
-    begin
-      p := (_Left + _Right) shr 1;
-      c := _CompareMeth(_Key, p);
-      if c > 0 then
-        _Left := p + 1
-      else
-        begin
-          _Right := p - 1;
-          if c = 0 then
-            begin
-              Result := True;
-              if not _Duplicates then
-                _Left := p;
-            end;
-        end;
+  while _Left <= _Right do begin
+    p := (_Left + _Right) shr 1;
+    c := _CompareMeth(_Key, p);
+    if c > 0 then
+      _Left := p + 1
+    else begin
+      _Right := p - 1;
+      if c = 0 then begin
+        Result := True;
+        if not _Duplicates then
+          _Left := p;
+      end;
     end;
+  end;
   _Index := _Left;
 end;
 
@@ -107,24 +111,45 @@ var
   p, c: LongInt;
 begin
   Result := False;
-  while _Left <= _Right do
-    begin
-      p := (_Left + _Right) shr 1;
-      c := _CompareMeth(_Key, p);
-      if c > 0 then
-        _Left := p + 1
-      else
-        begin
-          _Right := p - 1;
-          if c = 0 then
-            begin
-              Result := True;
-              if not _Duplicates then
-                _Left := p;
-            end;
-        end;
+  while _Left <= _Right do begin
+    p := (_Left + _Right) shr 1;
+    c := _CompareMeth(_Key, p);
+    if c > 0 then
+      _Left := p + 1
+    else begin
+      _Right := p - 1;
+      if c = 0 then begin
+        Result := True;
+        if not _Duplicates then
+          _Left := p;
+      end;
     end;
+  end;
+  _Index := _Left;
+end;
+
+function BinarySearch(_Left, _Right: integer; var _Index: integer;
+  _CompareInt: ICompareToKey; _Duplicates: boolean = false): boolean;
+var
+  p, c: LongInt;
+begin
+  Result := False;
+  while _Left <= _Right do begin
+    p := (_Left + _Right) shr 1;
+    c := _CompareInt.CompareTo(p);
+    if c > 0 then
+      _Left := p + 1
+    else begin
+      _Right := p - 1;
+      if c = 0 then begin
+        Result := True;
+        if not _Duplicates then
+          _Left := p;
+      end;
+    end;
+  end;
   _Index := _Left;
 end;
 
 end.
+
