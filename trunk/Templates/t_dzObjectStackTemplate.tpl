@@ -22,8 +22,9 @@ type
   /// extends _STACK_TEMPLATE_ to store objects on the stack.
   /// the destructor frees all items left on the stack by calling their Free method
   _OBJECT_STACK_TEMPLATE_ = class(_STACK_TEMPLATE_)
+  protected
+    procedure FreeItem(_Item: _STACK_ITEM_); override;
   public
-    destructor Destroy; override;
   end;
 
 {$ENDIF __OBJECT_STACK_TEMPLATE_SECOND_PASS__}
@@ -39,11 +40,9 @@ implementation
 
 {$INCLUDE 't_dzStackTemplate.tpl'}
 
-destructor _OBJECT_STACK_TEMPLATE_.Destroy;
+procedure _OBJECT_STACK_TEMPLATE_.FreeItem(_Item: _STACK_ITEM_);
 begin
-  while not IsEmpty do
-    Pop.Free;
-  inherited;
+  FreeAndNil(_Item);
 end;
 
 {$ENDIF __OBJECT_STACK_TEMPLATE_SECOND_PASS__}

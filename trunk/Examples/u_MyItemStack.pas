@@ -3,9 +3,9 @@ unit u_MyItemStack;
 interface
 
 uses
+  SysUtils,
   Classes,
   u_MyItem;
-
 
 {$DEFINE __OBJECT_STACK_TEMPLATE__}
 type

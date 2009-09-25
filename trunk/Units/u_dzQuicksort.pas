@@ -22,7 +22,15 @@ type
      Quicksort(0, Count-1, self.CompareItems, self.SwapItems);
    ##) }
 procedure QuickSort(_Left, _Right: integer; _CompareMeth: TCompareItemsMeth;
-  _SwapMeth: TSwapItemsMeth);
+  _SwapMeth: TSwapItemsMeth); overload;
+
+type
+  IQSDataHandler = interface ['{C7B22837-F9C0-4228-A2E3-DC8BBF27DBA9}']
+    function Compare(_Idx1, _Idx2: integer): integer;
+    procedure Swap(_Idx1, _Idx2: integer);
+  end;
+
+procedure QuickSort(_Left, _Right: integer; _DataHandler: IQSDataHandler); overload;
 
 {: Call BinarySearch with a method pointer that
    compares an index to the Item sought.
@@ -46,6 +54,38 @@ function BinarySearch(_Left, _Right: integer; var _Index: integer;
   _CompareInt: ICompareToKey; _Duplicates: boolean = false): boolean; overload;
 
 implementation
+
+procedure QuickSort(_Left, _Right: integer; _DataHandler: IQSDataHandler); overload;
+var
+  I, J, P: Integer;
+begin
+  if _Left >= _Right then
+    exit;
+  repeat
+    I := _Left;
+    J := _Right;
+    P := (_Left + _Right) shr 1;
+    repeat
+      while _DataHandler.Compare(I, P) < 0 do
+        Inc(I);
+      while _DataHandler.Compare(J, P) > 0 do
+        Dec(J);
+      if I <= J then begin
+        if I < J then
+          _DataHandler.Swap(I, J);
+        if P = I then
+          P := J
+        else if P = J then
+          P := I;
+        Inc(I);
+        Dec(J);
+      end;
+    until I > J;
+    if _Left < J then
+      QuickSort(_Left, J, _DataHandler);
+    _Left := I;
+  until I >= _Right;
+end;
 
 procedure QuickSort(_Left, _Right: integer; _CompareMeth: TCompareItemsMeth;
   _SwapMeth: TSwapItemsMeth);

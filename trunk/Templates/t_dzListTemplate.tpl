@@ -56,14 +56,16 @@ type
     procedure AtInsert(_Idx: integer; _Item: _ITEM_TYPE_);
     /// Returns the number of items stored in the list
     function Count: integer;
-    /// Deletes all items from the list without calling FreeItem, see also FreeAll
+    /// Deletes all items from the list without calling FreeItem, see also Clear
     procedure DeleteAll;
     /// Exchanges the two items at index Idx1 and Idx2
     procedure Exchange(_Idx1, _Idx2: integer);
     /// removes the item with index Idx from the list and returns it
     function Extract(_Idx: integer): _ITEM_TYPE_;
+    /// calls Clear
+    procedure FreeAll; deprecated; // use Clear instead
     /// Calls FreeItem for all items and removes them from the list
-    procedure FreeAll;
+    procedure Clear;
     /// returns the index of the given item or -1 if it is not in the list
     function IndexOf(_Item: _ITEM_TYPE_): integer;
     /// inserts an item into the list and returns its index
@@ -130,6 +132,11 @@ begin
 end;
 
 procedure _DZ_LIST_TEMPLATE_.FreeAll;
+begin
+  Clear;
+end;
+
+procedure _DZ_LIST_TEMPLATE_.Clear;
 var
   i: integer;
 begin
@@ -138,6 +145,7 @@ begin
   end;
   FItems.Clear;
 end;
+
 
 procedure _DZ_LIST_TEMPLATE_.FreeItem(_Item: _ITEM_TYPE_);
 begin
