@@ -26,18 +26,19 @@ type
 type
   _DZ_LIST_TEMPLATE_ = class(_LIST_ANCESTOR_)
   {(*}
-  private type
-    /// This enumerator allows for..in style loops
-    _DZ_LIST_TEMPLATE_ENUMERATOR_ = record
-    private
-      FIdx: integer;
-      FList: _DZ_LIST_TEMPLATE_;
-      function GetCurrent: _ITEM_TYPE_; inline;
-    public
-      constructor Create(_List: _DZ_LIST_TEMPLATE_);
-      function MoveNext: boolean; inline;
-      property Current: _ITEM_TYPE_ read GetCurrent;
-    end;
+  private
+    type
+      /// This enumerator allows for..in style loops
+      TEnumerator = record
+      private
+        FIdx: integer;
+        FList: _DZ_LIST_TEMPLATE_;
+        function GetCurrent: _ITEM_TYPE_; inline;
+      public
+        constructor Create(_List: _DZ_LIST_TEMPLATE_);
+        function MoveNext: boolean; inline;
+        property Current: _ITEM_TYPE_ read GetCurrent;
+      end;
   {*)}
   private
     /// This actually stores the items
@@ -73,7 +74,11 @@ type
     /// adds an item into the list and returns its index
     function Add(_Item: _ITEM_TYPE_): integer; virtual;
     /// allows for..in style loops
-    function GetEnumerator: _DZ_LIST_TEMPLATE_ENUMERATOR_;
+    function GetEnumerator: TEnumerator;
+    /// short for Items[0]
+    function GetFirstItem: _ITEM_TYPE_;
+    /// short for Items[Count-1];
+    function GetLastItem: _ITEM_TYPE_;
     /// allows accessing the items in the list by index
     property Items[_Idx: integer]: _ITEM_TYPE_ read _GetItems; default;
   end;
@@ -146,7 +151,6 @@ begin
   FItems.Clear;
 end;
 
-
 procedure _DZ_LIST_TEMPLATE_.FreeItem(_Item: _ITEM_TYPE_);
 begin
   // do nothing, override if the items must be freed
@@ -155,6 +159,16 @@ end;
 function _DZ_LIST_TEMPLATE_._GetItems(_Idx: integer): _ITEM_TYPE_;
 begin
   Result := _ITEM_TYPE_(FItems[_Idx]);
+end;
+
+function _DZ_LIST_TEMPLATE_.GetFirstItem: _ITEM_TYPE_;
+begin
+  Result := Items[0];
+end;
+
+function _DZ_LIST_TEMPLATE_.GetLastItem: _ITEM_TYPE_;
+begin
+  Result := Items[Count - 1];
 end;
 
 function _DZ_LIST_TEMPLATE_.Insert(_Item: _ITEM_TYPE_): integer;
@@ -177,23 +191,23 @@ begin
   Result := FItems.IndexOf(_LIST_CONTAINER_ITEM_TYPE_(_Item));
 end;
 
-function _DZ_LIST_TEMPLATE_.GetEnumerator: _DZ_LIST_TEMPLATE_ENUMERATOR_;
+function _DZ_LIST_TEMPLATE_.GetEnumerator: TEnumerator;
 begin
-  Result := _DZ_LIST_TEMPLATE_ENUMERATOR_.Create(Self);
+  Result := TEnumerator.Create(Self);
 end;
 
-constructor _DZ_LIST_TEMPLATE_._DZ_LIST_TEMPLATE_ENUMERATOR_.Create(_List: _DZ_LIST_TEMPLATE_);
+constructor _DZ_LIST_TEMPLATE_.TEnumerator.Create(_List: _DZ_LIST_TEMPLATE_);
 begin
   FList := _List;
   FIdx := -1;
 end;
 
-function _DZ_LIST_TEMPLATE_._DZ_LIST_TEMPLATE_ENUMERATOR_.GetCurrent: _ITEM_TYPE_;
+function _DZ_LIST_TEMPLATE_.TEnumerator.GetCurrent: _ITEM_TYPE_;
 begin
   Result := FList[FIdx];
 end;
 
-function _DZ_LIST_TEMPLATE_._DZ_LIST_TEMPLATE_ENUMERATOR_.MoveNext: boolean;
+function _DZ_LIST_TEMPLATE_.TEnumerator.MoveNext: boolean;
 begin
   Result := (FIdx < FList.Count - 1);
   if Result then
