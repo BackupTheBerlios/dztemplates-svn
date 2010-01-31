@@ -46,6 +46,7 @@ type
     function Compare(const _Key1, _Key2: _KEY_TYPE_): integer; virtual; abstract;
     /// compares the given key to the key of the item at index Idx
     function CompareTo(const _Key; _Idx: integer): integer; virtual;
+    procedure DuplicateError(const _Item: _ITEM_TYPE_); virtual;
   public
     /// creates a new sorted list
     constructor Create;
@@ -107,12 +108,17 @@ begin
   FDuplicates := dupError;
 end;
 
+procedure _DZ_SORTED_LIST_TEMPLATE_.DuplicateError(const _Item: _Item_TYPE_);
+begin
+  raise EListError.CreateFmt('[%s] List does not allow duplicates', [self.ClassName]);
+end;
+
 function _DZ_SORTED_LIST_TEMPLATE_.Add(_Item: _ITEM_TYPE_): integer;
 begin
   if Find(KeyOf(_Item), Result) then begin
     case Duplicates of
       dupError:
-        raise EListError.Create('List does not allow duplicates');
+        DuplicateError(_Item);
       dupIgnore: begin
           Result := -1;
           exit;
