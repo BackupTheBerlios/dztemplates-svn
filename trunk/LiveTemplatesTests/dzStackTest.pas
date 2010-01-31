@@ -3,6 +3,7 @@ unit dzStackTest;
 interface
 
 uses
+  SysUtils,
   Classes;
 
 type
@@ -30,3 +31,4 @@ implementation
 {$INCLUDE 't_dzStackTemplate.tpl'}
 
 end.
+

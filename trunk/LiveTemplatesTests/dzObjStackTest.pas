@@ -3,6 +3,7 @@ unit dzObjStackTest;
 interface
 
 uses
+  SysUtils,
   Classes;
 
 type
