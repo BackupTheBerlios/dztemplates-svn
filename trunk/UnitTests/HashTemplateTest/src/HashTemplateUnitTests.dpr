@@ -14,7 +14,7 @@ program HashTemplateUnitTests;
 {$APPTYPE CONSOLE}
 {$ENDIF}
 
-{%File '..\..\Templates\t_dzHashTemplate.tpl'}
+
 
 uses
   Forms,
@@ -22,10 +22,8 @@ uses
   GUITestRunner,
   TextTestRunner,
   Testu_dzHashTemplateTest in 'Testu_dzHashTemplateTest.pas',
-  u_MyItemHash in '..\..\Examples\u_MyItemHash.pas',
-  u_MyItem in '..\..\Examples\u_MyItem.pas';
-
-{$R *.RES}
+  u_MyItemHash in '..\..\..\Examples\u_MyItemHash.pas',
+  u_MyItem in '..\..\..\Examples\u_MyItem.pas';
 
 begin
   Application.Initialize;

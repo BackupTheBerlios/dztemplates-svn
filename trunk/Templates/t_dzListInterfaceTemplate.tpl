@@ -25,9 +25,9 @@ type
     /// removes the item with index Idx from the list and returns it
     function Extract(_Idx: integer): _ITEM_TYPE_;
     /// Calls FreeItem for all items and removes them from the list
-    procedure FreeAll;
-    /// inserts an item into the list and returns its index
-    function Insert(_Item: _ITEM_TYPE_): integer;
+    procedure Clear;
+    /// Add an item into the list and returns its index
+    function Add(_Item: _ITEM_TYPE_): integer;
     /// allows accessing the items in the list by index
     property Items[_Idx: integer]: _ITEM_TYPE_ read _GetItems; default;
   end;

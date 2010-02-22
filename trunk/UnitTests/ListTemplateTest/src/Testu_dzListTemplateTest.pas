@@ -33,7 +33,7 @@ type
     procedure SetUp; override;
     procedure TearDown; override;
   published
-    procedure testInsert;
+    procedure testAdd;
     procedure testExtract;
     procedure testDeleteAll;
     procedure testFreeAll;
@@ -48,7 +48,7 @@ type
     procedure SetUp; override;
     procedure TearDown; override;
   published
-    procedure testInsert;
+    procedure testAdd;
     procedure testExtract;
     procedure testDeleteAll;
     procedure testFreeAll;
@@ -66,13 +66,13 @@ type
     procedure SetUp; override;
     procedure TearDown; override;
   published
-    procedure testInsert;
+    procedure testAdd;
     procedure testInsertDupError;
     procedure testInsertDupIgnore;
     procedure testInsertDupAccept;
     procedure testDeleteAll;
     procedure testExtract;
-    procedure testFreeAll;
+    procedure testClear;
     procedure testFindIdx;
     procedure testFindItem;
   end;
@@ -88,10 +88,10 @@ type
     procedure SetUp; override;
     procedure TearDown; override;
   published
-    procedure testInsert;
+    procedure testAdd;
     procedure testDeleteAll;
     procedure testExtract;
-    procedure testFreeAll;
+    procedure testClear;
   end;
 
   // Test methods for class TMyItemIntSortedList
@@ -101,18 +101,18 @@ type
     FExpectedItemLeak: integer;
   private
     procedure Fill;
-    procedure InsertDupError;
+    procedure AddDupError;
   public
     procedure SetUp; override;
     procedure TearDown; override;
   published
-    procedure testInsert;
-    procedure testInsertDupError;
-    procedure testInsertDupIgnore;
-    procedure testInsertDupAccept;
+    procedure testAdd;
+    procedure testAddDupError;
+    procedure testAddDupIgnore;
+    procedure testAddDupAccept;
     procedure testDeleteAll;
     procedure testExtract;
-    procedure testFreeAll;
+    procedure testClear;
     procedure testFindIdx;
     procedure testFindItem;
   end;
@@ -166,7 +166,7 @@ var
   i: integer;
   Item: u_MyItem.TMyItem;
 begin
-  testInsert;
+  testAdd;
 
   for i := 0 to INSERT_COUNT - 1 do begin
     Item := FIMyItemList.Extract(0);
@@ -180,7 +180,7 @@ end;
 
 procedure TestIMyItemList.testDeleteAll;
 begin
-  testInsert;
+  testAdd;
   FIMyItemList.DeleteAll;
   CheckEquals(0, FIMyItemList.Count, 'List is not empty');
   CheckEquals(INSERT_COUNT, ItemCount, 'Items were destroyed');
@@ -189,19 +189,19 @@ end;
 
 procedure TestIMyItemList.testFreeAll;
 begin
-  testInsert;
-  FIMyItemList.FreeAll;
+  testAdd;
+  FIMyItemList.Clear;
   CheckEquals(0, FIMyItemList.Count, 'List is not empty');
   CheckEquals(0, ItemCount, 'Items were not destroyed');
 end;
 
-procedure TestIMyItemList.testInsert;
+procedure TestIMyItemList.testAdd;
 var
   i: integer;
   Item: u_MyItem.TMyItem;
 begin
   for i := 0 to INSERT_COUNT - 1 do begin
-    FIMyItemList.Insert(TMyItem.Create(i));
+    FIMyItemList.Add(TMyItem.Create(i));
   end;
   CheckEquals(INSERT_COUNT, FIMyItemList.Count, 'Count does not match');
   CheckEquals(INSERT_COUNT, ItemCount, 'Number of created items does not match');
@@ -232,7 +232,7 @@ var
   i: integer;
   Item: u_MyItem.TMyItem;
 begin
-  testInsert;
+  testAdd;
 
   for i := 0 to INSERT_COUNT - 1 do begin
     Item := FMyItemList.Extract(0);
@@ -246,7 +246,7 @@ end;
 
 procedure TestTMyItemList.testDeleteAll;
 begin
-  testInsert;
+  testAdd;
   FMyItemList.DeleteAll;
   CheckEquals(0, FMyItemList.Count, 'List is not empty');
   CheckEquals(INSERT_COUNT, ItemCount, 'Items were destroyed');
@@ -255,19 +255,19 @@ end;
 
 procedure TestTMyItemList.testFreeAll;
 begin
-  testInsert;
-  FMyItemList.FreeAll;
+  testAdd;
+  FMyItemList.Clear;
   CheckEquals(0, FMyItemList.Count, 'List is not empty');
   CheckEquals(0, ItemCount, 'Items were not destroyed');
 end;
 
-procedure TestTMyItemList.testInsert;
+procedure TestTMyItemList.testAdd;
 var
   i: integer;
   Item: u_MyItem.TMyItem;
 begin
   for i := 0 to INSERT_COUNT - 1 do begin
-    FMyItemList.Insert(TMyItem.Create(i));
+    FMyItemList.Add(TMyItem.Create(i));
   end;
   CheckEquals(INSERT_COUNT, FMyItemList.Count, 'Count does not match');
   CheckEquals(INSERT_COUNT, ItemCount, 'Number of created items does not match');
@@ -298,7 +298,7 @@ var
   i: integer;
 begin
   for i := INSERT_COUNT - 1 downto 0 do begin
-    FMySortedList.Insert(TMyItem.Create(i));
+    FMySortedList.Add(TMyItem.Create(i));
   end;
 end;
 
@@ -328,15 +328,15 @@ begin
   CheckEquals(0, FMySortedList.Count, 'List is not empty');
 end;
 
-procedure TestTMySortedList.testFreeAll;
+procedure TestTMySortedList.testClear;
 begin
   Fill;
-  FMySortedList.FreeAll;
+  FMySortedList.Clear;
   CheckEquals(0, FMySortedList.Count, 'List is not empty');
   CheckEquals(0, ItemCount, 'Items were not destroyed');
 end;
 
-procedure TestTMySortedList.testInsert;
+procedure TestTMySortedList.testAdd;
 var
   i: integer;
   Item: u_MyItem.TMyItem;
@@ -358,12 +358,12 @@ begin
   FMySortedList.Duplicates := dupAccept;
   Fill;
 
-  FMySortedList.Insert(TMyItem.Create(5));
+  FMySortedList.Add(TMyItem.Create(5));
   CheckEquals(INSERT_COUNT + 1, FMySortedList.Count, 'Count does not match');
 
   CheckEquals(INSERT_COUNT + 1, ItemCount, 'Number of created items does not match');
 
-  FMySortedList.Insert(TMyItem.Create(5));
+  FMySortedList.Add(TMyItem.Create(5));
   CheckEquals(INSERT_COUNT + 2, FMySortedList.Count, 'Count does not match');
   CheckTrue(FMySortedList.Find(5, Idx), 'result of Find(5)');
   CheckEquals(5, Idx, 'index of item(5)');
@@ -373,7 +373,7 @@ end;
 
 procedure TestTMySortedList.InsertDupError;
 begin
-  FMySortedList.Insert(TMyItem.Create(5));
+  FMySortedList.Add(TMyItem.Create(5));
 end;
 
 procedure TestTMySortedList.testInsertDupError;
@@ -390,7 +390,7 @@ begin
   FMySortedList.Duplicates := dupIgnore;
   Fill;
 
-  FMySortedList.Insert(TMyItem.Create(5));
+  FMySortedList.Add(TMyItem.Create(5));
   CheckEquals(INSERT_COUNT, FMySortedList.Count, 'Count does not match');
 
   CheckEquals(INSERT_COUNT + 1, ItemCount, 'Number of created items does not match');
@@ -425,7 +425,7 @@ var
   i: integer;
 begin
   for i := 0 to INSERT_COUNT - 1 do begin
-    FMyItemIntList.Insert(TMyItem.Create(i));
+    FMyItemIntList.Add(TMyItem.Create(i));
   end;
 end;
 
@@ -467,21 +467,21 @@ begin
   CheckEquals(0, FMyItemIntList.Count, 'List is not empty');
 end;
 
-procedure TestTMyItemIntList.testFreeAll;
+procedure TestTMyItemIntList.testClear;
 begin
   Fill;
-  FMyItemIntList.FreeAll;
+  FMyItemIntList.Clear;
   CheckEquals(0, FMyItemIntList.Count, 'List is not empty');
   CheckEquals(0, ItemCount, 'Items were not destroyed');
 end;
 
-procedure TestTMyItemIntList.testInsert;
+procedure TestTMyItemIntList.testAdd;
 var
   i: integer;
   Item: u_MyItem.IMyItem;
 begin
   for i := 0 to INSERT_COUNT - 1 do begin
-    FMyItemIntList.Insert(TMyItem.Create(i));
+    FMyItemIntList.Add(TMyItem.Create(i));
   end;
   CheckEquals(INSERT_COUNT, FMyItemIntList.Count, 'Count does not match');
   CheckEquals(INSERT_COUNT, ItemCount, 'Number of created items does not match');
@@ -513,7 +513,7 @@ var
   i: integer;
 begin
   for i := INSERT_COUNT - 1 downto 0 do begin
-    FMyItemIntSortedList.Insert(TMyItem.Create(i));
+    FMyItemIntSortedList.Add(TMyItem.Create(i));
   end;
 end;
 
@@ -543,15 +543,15 @@ begin
   CheckEquals(0, FMyItemIntSortedList.Count, 'List is not empty');
 end;
 
-procedure TestTMyItemIntSortedList.testFreeAll;
+procedure TestTMyItemIntSortedList.testClear;
 begin
   Fill;
-  FMyItemIntSortedList.FreeAll;
+  FMyItemIntSortedList.Clear;
   CheckEquals(0, FMyItemIntSortedList.Count, 'List is not empty');
   CheckEquals(0, ItemCount, 'Items were not destroyed');
 end;
 
-procedure TestTMyItemIntSortedList.testInsert;
+procedure TestTMyItemIntSortedList.testAdd;
 var
   i: integer;
   Item: u_MyItem.IMyItem;
@@ -566,35 +566,35 @@ begin
   end;
 end;
 
-procedure TestTMyItemIntSortedList.testInsertDupAccept;
+procedure TestTMyItemIntSortedList.testAddDupAccept;
 begin
   FMyItemIntSortedList.Duplicates := dupAccept;
   Fill;
 
-  FMyItemIntSortedList.Insert(TMyItem.Create(5));
+  FMyItemIntSortedList.Add(TMyItem.Create(5));
   CheckEquals(INSERT_COUNT + 1, FMyItemIntSortedList.Count, 'Count does not match');
 
   CheckEquals(INSERT_COUNT + 1, ItemCount, 'Number of created items does not match');
 end;
 
-procedure TestTMyItemIntSortedList.InsertDupError;
+procedure TestTMyItemIntSortedList.AddDupError;
 begin
-  FMyItemIntSortedList.Insert(TMyItem.Create(5));
+  FMyItemIntSortedList.Add(TMyItem.Create(5));
 end;
 
-procedure TestTMyItemIntSortedList.testInsertDupError;
+procedure TestTMyItemIntSortedList.testAddDupError;
 begin
   Fill;
 
-  CheckException(InsertDupError, EListError, 'expected exception did not occur');
+  CheckException(AddDupError, EListError, 'expected exception did not occur');
 end;
 
-procedure TestTMyItemIntSortedList.testInsertDupIgnore;
+procedure TestTMyItemIntSortedList.testAddDupIgnore;
 begin
   FMyItemIntSortedList.Duplicates := dupIgnore;
   Fill;
 
-  FMyItemIntSortedList.Insert(TMyItem.Create(5));
+  FMyItemIntSortedList.Add(TMyItem.Create(5));
   CheckEquals(INSERT_COUNT, FMyItemIntSortedList.Count, 'Count does not match');
 
   CheckEquals(INSERT_COUNT, ItemCount, 'Number of created items does not match');

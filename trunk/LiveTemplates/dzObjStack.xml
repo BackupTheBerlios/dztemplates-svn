@@ -27,7 +27,6 @@
 		<code language="Delphi" delimiter="|">
                 <![CDATA[
 uses
-  SysUtils,
   Classes;
 
 {$DEFINE __OBJECT_STACK_TEMPLATE__}

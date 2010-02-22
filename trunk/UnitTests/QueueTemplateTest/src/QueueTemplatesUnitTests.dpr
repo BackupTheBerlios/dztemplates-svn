@@ -1,4 +1,4 @@
-program StackTemplatesUnitTests;
+program QueueTemplatesUnitTests;
 {
 
   Delphi DUnit Test Project
@@ -14,18 +14,16 @@ program StackTemplatesUnitTests;
 {$APPTYPE CONSOLE}
 {$ENDIF}
 
-{%File '..\..\Templates\t_dzStackTemplate.tpl'}
+
 
 uses
   Forms,
   TestFramework,
   GUITestRunner,
   TextTestRunner,
-  Testu_dzStackTemplateTest in 'Testu_dzStackTemplateTest.pas',
-  u_MyItemStack in '..\..\Examples\u_MyItemStack.pas',
-  u_MyItem in '..\..\Examples\u_MyItem.pas';
-
-{$R *.RES}
+  Testu_dzQueueTemplateTest in 'Testu_dzQueueTemplateTest.pas',
+  u_MyItem in '..\..\..\Examples\u_MyItem.pas',
+  u_MyItemQueue in '..\..\..\Examples\u_MyItemQueue.pas';
 
 begin
   Application.Initialize;
