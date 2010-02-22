@@ -151,7 +151,7 @@ begin
     s := FMyItemHash.Keys[i];
     CheckEquals(1, Length(s));
     CheckTrue(s[1] in Keys);
-    Exclude(Keys, s[1]);
+    Exclude(Keys, AnsiChar(s[1]));
   end;
   CheckTrue(Keys = []);
 end;
@@ -159,7 +159,7 @@ end;
 procedure TestTMyItemHash.testValuesProperty;
 var
   i: integer;
-  c: char;
+  c: AnsiChar;
   Keys: set of TCharHash;
   Item: TMyItem;
 begin
@@ -167,7 +167,7 @@ begin
   Keys := CHAR_HASH_SET_FULL;
   for i := 0 to FMyItemHash.Count - 1 do begin
     Item := FMyItemHash.Items[i];
-    c := chr(Item.Key);
+    c := AnsiChar(Item.Key);
     CheckTrue(c in Keys);
     Exclude(Keys, c);
   end;
