@@ -2,13 +2,12 @@ program MyItemStackTest;
 
 {$APPTYPE CONSOLE}
 
-{%File '..\..\Templates\t_dzObjectStackTemplate.tpl'}
-{%File '..\..\Templates\t_dzStackTemplate.tpl'}
+
 
 uses
   SysUtils,
-  u_MyItemStack in '..\u_MyItemStack.pas',
-  u_MyItem in '..\u_MyItem.pas';
+  u_MyItemStack in '..\..\u_MyItemStack.pas',
+  u_MyItem in '..\..\u_MyItem.pas';
 
 var
   Stack: TMyItemStack;

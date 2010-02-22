@@ -6,9 +6,9 @@ program MyItemHashTest;
 
 uses
   SysUtils,
-  t_dzHashTemplate in '..\..\Templates\t_dzHashTemplate.tpl',
-  u_MyItem in '..\u_MyItem.pas',
-  u_MyItemHash in '..\u_MyItemHash.pas';
+  t_dzHashTemplate in '..\..\..\Templates\t_dzHashTemplate.tpl',
+  u_MyItem in '..\..\u_MyItem.pas',
+  u_MyItemHash in '..\..\u_MyItemHash.pas';
 
 var
   ItemHash: TMyItemHash;

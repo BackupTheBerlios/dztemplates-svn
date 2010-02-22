@@ -1,11 +1,11 @@
 ﻿	<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 		<PropertyGroup>
-			<ProjectGuid>{e8629ba1-5144-43e8-8a6f-5a742f537160}</ProjectGuid>
-			<MainSource>MyItemListTest.dpr</MainSource>
+			<ProjectGuid>{69b02de3-3dac-45ec-a15a-0f740c20739b}</ProjectGuid>
+			<MainSource>MyItemQueueTest.dpr</MainSource>
 			<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
 			<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 			<DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
-			<DCC_DependencyCheckOutputName>MyItemListTest.exe</DCC_DependencyCheckOutputName>
+			<DCC_DependencyCheckOutputName>MyItemQueueTest.exe</DCC_DependencyCheckOutputName>
 			<ProjectVersion>12.0</ProjectVersion>
 			<Config Condition="'$(Config)'==''">Debug</Config>
 		</PropertyGroup>
@@ -23,7 +23,10 @@
 			<Base>true</Base>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Base)'!=''">
-			<DCC_DependencyCheckOutputName>MyItemListTest.exe</DCC_DependencyCheckOutputName>
+			<DCC_ExeOutput>..</DCC_ExeOutput>
+			<DCC_UnitSearchPath>..\..\..\Templates;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+			<DCC_DcuOutput>..\dcu</DCC_DcuOutput>
+			<DCC_DependencyCheckOutputName>..\MyItemQueueTest.exe</DCC_DependencyCheckOutputName>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Cfg_1)'!=''">
 			<Version>7.0</Version>
@@ -38,7 +41,6 @@
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Cfg_2)'!=''">
 			<Version>7.0</Version>
-			<DCC_UnitSearchPath>..\..\Templates;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
 			<DCC_ResourcePath>..\..\Templates;$(DCC_ResourcePath)</DCC_ResourcePath>
 			<DCC_ObjPath>..\..\Templates;$(DCC_ObjPath)</DCC_ObjPath>
 			<DCC_IncludePath>..\..\Templates;$(DCC_IncludePath)</DCC_IncludePath>
@@ -73,27 +75,20 @@
 						<VersionInfoKeys Name="FileVersion">1.0.0.0</VersionInfoKeys>
 						<VersionInfoKeys Name="ProductVersion">1.0.0.0</VersionInfoKeys>
 					</VersionInfoKeys>
-					<Excluded_Packages>
-						<Excluded_Packages Name="D:\source\delforex\out\DelforexPackage9.bpl">Delphi Code Formatting Expert</Excluded_Packages>
-					</Excluded_Packages>
 					<Source>
-						<Source Name="MainSource">MyItemListTest.dpr</Source>
+						<Source Name="MainSource">MyItemQueueTest.dpr</Source>
 					</Source>
 				</Delphi.Personality>
 			</BorlandProject>
 			<ProjectFileVersion>12</ProjectFileVersion>
 		</ProjectExtensions>
 		<ItemGroup>
-			<DelphiCompile Include="MyItemListTest.dpr">
+			<DelphiCompile Include="MyItemQueueTest.dpr">
 				<MainSource>MainSource</MainSource>
 			</DelphiCompile>
-			<DCCReference Include="..\u_MyItemList.pas"/>
-			<DCCReference Include="..\u_MyItem.pas"/>
-			<DCCReference Include="..\..\Units\u_dzQuicksort.pas"/>
-			<DCCReference Include="..\i_MyItemList.pas"/>
-			<None Include="..\..\Templates\t_dzListInterfaceTemplate.tpl"/>
-			<None Include="..\..\Templates\t_dzListTemplate.tpl"/>
-			<None Include="..\..\Templates\t_dzObjectListTemplate.tpl"/>
+			<DCCReference Include="..\..\u_MyItemQueue.pas"/>
+			<DCCReference Include="..\..\u_MyItem.pas"/>
+			<None Include="..\..\..\Templates\t_dzQueueTemplate.tpl"/>
 			<BuildConfiguration Include="Base">
 				<Key>Base</Key>
 			</BuildConfiguration>

@@ -23,7 +23,10 @@
 			<Base>true</Base>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Base)'!=''">
-			<DCC_DependencyCheckOutputName>MyItemSorterTest.exe</DCC_DependencyCheckOutputName>
+			<DCC_ExeOutput>..</DCC_ExeOutput>
+			<DCC_UnitSearchPath>..\..\..\Templates;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+			<DCC_DcuOutput>..\dcu</DCC_DcuOutput>
+			<DCC_DependencyCheckOutputName>..\MyItemSorterTest.exe</DCC_DependencyCheckOutputName>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Cfg_1)'!=''">
 			<Version>7.0</Version>
@@ -38,7 +41,6 @@
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Cfg_2)'!=''">
 			<Version>7.0</Version>
-			<DCC_UnitSearchPath>..\..\Templates;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
 			<DCC_ResourcePath>..\..\Templates;$(DCC_ResourcePath)</DCC_ResourcePath>
 			<DCC_ObjPath>..\..\Templates;$(DCC_ObjPath)</DCC_ObjPath>
 			<DCC_IncludePath>..\..\Templates;$(DCC_IncludePath)</DCC_IncludePath>
@@ -84,14 +86,14 @@
 			<DelphiCompile Include="MyItemSorterTest.dpr">
 				<MainSource>MainSource</MainSource>
 			</DelphiCompile>
-			<DCCReference Include="..\u_MyItem.pas"/>
-			<DCCReference Include="..\i_MyItemList.pas"/>
-			<DCCReference Include="..\u_MyItemList.pas"/>
-			<DCCReference Include="..\..\Units\u_dzQuicksort.pas"/>
-			<DCCReference Include="..\u_MyItemListSorter.pas"/>
-			<None Include="..\..\Templates\t_dzListInterfaceTemplate.tpl"/>
-			<None Include="..\..\Templates\t_dzListSorterTemplate.tpl"/>
-			<None Include="..\..\Templates\t_dzObjectListTemplate.tpl"/>
+			<DCCReference Include="..\..\u_MyItem.pas"/>
+			<DCCReference Include="..\..\i_MyItemList.pas"/>
+			<DCCReference Include="..\..\u_MyItemList.pas"/>
+			<DCCReference Include="..\..\..\Units\u_dzQuicksort.pas"/>
+			<DCCReference Include="..\..\u_MyItemListSorter.pas"/>
+			<None Include="..\..\..\Templates\t_dzListInterfaceTemplate.tpl"/>
+			<None Include="..\..\..\Templates\t_dzListSorterTemplate.tpl"/>
+			<None Include="..\..\..\Templates\t_dzObjectListTemplate.tpl"/>
 			<BuildConfiguration Include="Base">
 				<Key>Base</Key>
 			</BuildConfiguration>

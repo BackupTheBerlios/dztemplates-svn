@@ -3,31 +3,31 @@
 			<ProjectGuid>{01294a10-85b5-455f-82ff-d2655d672f06}</ProjectGuid>
 		</PropertyGroup>
 		<ItemGroup>
-			<Projects Include="MyItemHashTest.dproj">
+			<Projects Include="src\MyItemHashTest.dproj">
 				<Dependencies/>
 			</Projects>
-			<Projects Include="MyItemIntListTest.dproj">
+			<Projects Include="src\MyItemIntListTest.dproj">
 				<Dependencies/>
 			</Projects>
-			<Projects Include="MyItemListTest.dproj">
+			<Projects Include="src\MyItemListTest.dproj">
 				<Dependencies/>
 			</Projects>
-			<Projects Include="MyItemQueueTest.dproj">
+			<Projects Include="src\MyItemQueueTest.dproj">
 				<Dependencies/>
 			</Projects>
-			<Projects Include="MyItemSortedIntListTest.dproj">
+			<Projects Include="src\MyItemSortedIntListTest.dproj">
 				<Dependencies/>
 			</Projects>
-			<Projects Include="MyItemSortedListTest.dproj">
+			<Projects Include="src\MyItemSortedListTest.dproj">
 				<Dependencies/>
 			</Projects>
-			<Projects Include="MyItemStackTest.dproj">
+			<Projects Include="src\MyItemStackTest.dproj">
 				<Dependencies/>
 			</Projects>
-			<Projects Include="StringQueueTest.dproj">
+			<Projects Include="src\StringQueueTest.dproj">
 				<Dependencies/>
 			</Projects>
-			<Projects Include="MyItemSorterTest.dproj">
+			<Projects Include="src\MyItemSorterTest.dproj">
 				<Dependencies/>
 			</Projects>
 		</ItemGroup>
@@ -41,85 +41,85 @@
 			</BorlandProject>
 		</ProjectExtensions>
 		<Target Name="MyItemHashTest">
-			<MSBuild Projects="MyItemHashTest.dproj"/>
+			<MSBuild Projects="src\MyItemHashTest.dproj"/>
 		</Target>
 		<Target Name="MyItemHashTest:Clean">
-			<MSBuild Targets="Clean" Projects="MyItemHashTest.dproj"/>
+			<MSBuild Targets="Clean" Projects="src\MyItemHashTest.dproj"/>
 		</Target>
 		<Target Name="MyItemHashTest:Make">
-			<MSBuild Targets="Make" Projects="MyItemHashTest.dproj"/>
+			<MSBuild Targets="Make" Projects="src\MyItemHashTest.dproj"/>
 		</Target>
 		<Target Name="MyItemIntListTest">
-			<MSBuild Projects="MyItemIntListTest.dproj"/>
+			<MSBuild Projects="src\MyItemIntListTest.dproj"/>
 		</Target>
 		<Target Name="MyItemIntListTest:Clean">
-			<MSBuild Targets="Clean" Projects="MyItemIntListTest.dproj"/>
+			<MSBuild Targets="Clean" Projects="src\MyItemIntListTest.dproj"/>
 		</Target>
 		<Target Name="MyItemIntListTest:Make">
-			<MSBuild Targets="Make" Projects="MyItemIntListTest.dproj"/>
+			<MSBuild Targets="Make" Projects="src\MyItemIntListTest.dproj"/>
 		</Target>
 		<Target Name="MyItemListTest">
-			<MSBuild Projects="MyItemListTest.dproj"/>
+			<MSBuild Projects="src\MyItemListTest.dproj"/>
 		</Target>
 		<Target Name="MyItemListTest:Clean">
-			<MSBuild Targets="Clean" Projects="MyItemListTest.dproj"/>
+			<MSBuild Targets="Clean" Projects="src\MyItemListTest.dproj"/>
 		</Target>
 		<Target Name="MyItemListTest:Make">
-			<MSBuild Targets="Make" Projects="MyItemListTest.dproj"/>
+			<MSBuild Targets="Make" Projects="src\MyItemListTest.dproj"/>
 		</Target>
 		<Target Name="MyItemQueueTest">
-			<MSBuild Projects="MyItemQueueTest.dproj"/>
+			<MSBuild Projects="src\MyItemQueueTest.dproj"/>
 		</Target>
 		<Target Name="MyItemQueueTest:Clean">
-			<MSBuild Targets="Clean" Projects="MyItemQueueTest.dproj"/>
+			<MSBuild Targets="Clean" Projects="src\MyItemQueueTest.dproj"/>
 		</Target>
 		<Target Name="MyItemQueueTest:Make">
-			<MSBuild Targets="Make" Projects="MyItemQueueTest.dproj"/>
+			<MSBuild Targets="Make" Projects="src\MyItemQueueTest.dproj"/>
 		</Target>
 		<Target Name="MyItemSortedIntListTest">
-			<MSBuild Projects="MyItemSortedIntListTest.dproj"/>
+			<MSBuild Projects="src\MyItemSortedIntListTest.dproj"/>
 		</Target>
 		<Target Name="MyItemSortedIntListTest:Clean">
-			<MSBuild Targets="Clean" Projects="MyItemSortedIntListTest.dproj"/>
+			<MSBuild Targets="Clean" Projects="src\MyItemSortedIntListTest.dproj"/>
 		</Target>
 		<Target Name="MyItemSortedIntListTest:Make">
-			<MSBuild Targets="Make" Projects="MyItemSortedIntListTest.dproj"/>
+			<MSBuild Targets="Make" Projects="src\MyItemSortedIntListTest.dproj"/>
 		</Target>
 		<Target Name="MyItemSortedListTest">
-			<MSBuild Projects="MyItemSortedListTest.dproj"/>
+			<MSBuild Projects="src\MyItemSortedListTest.dproj"/>
 		</Target>
 		<Target Name="MyItemSortedListTest:Clean">
-			<MSBuild Targets="Clean" Projects="MyItemSortedListTest.dproj"/>
+			<MSBuild Targets="Clean" Projects="src\MyItemSortedListTest.dproj"/>
 		</Target>
 		<Target Name="MyItemSortedListTest:Make">
-			<MSBuild Targets="Make" Projects="MyItemSortedListTest.dproj"/>
+			<MSBuild Targets="Make" Projects="src\MyItemSortedListTest.dproj"/>
 		</Target>
 		<Target Name="MyItemStackTest">
-			<MSBuild Projects="MyItemStackTest.dproj"/>
+			<MSBuild Projects="src\MyItemStackTest.dproj"/>
 		</Target>
 		<Target Name="MyItemStackTest:Clean">
-			<MSBuild Targets="Clean" Projects="MyItemStackTest.dproj"/>
+			<MSBuild Targets="Clean" Projects="src\MyItemStackTest.dproj"/>
 		</Target>
 		<Target Name="MyItemStackTest:Make">
-			<MSBuild Targets="Make" Projects="MyItemStackTest.dproj"/>
+			<MSBuild Targets="Make" Projects="src\MyItemStackTest.dproj"/>
 		</Target>
 		<Target Name="StringQueueTest">
-			<MSBuild Projects="StringQueueTest.dproj"/>
+			<MSBuild Projects="src\StringQueueTest.dproj"/>
 		</Target>
 		<Target Name="StringQueueTest:Clean">
-			<MSBuild Targets="Clean" Projects="StringQueueTest.dproj"/>
+			<MSBuild Targets="Clean" Projects="src\StringQueueTest.dproj"/>
 		</Target>
 		<Target Name="StringQueueTest:Make">
-			<MSBuild Targets="Make" Projects="StringQueueTest.dproj"/>
+			<MSBuild Targets="Make" Projects="src\StringQueueTest.dproj"/>
 		</Target>
 		<Target Name="MyItemSorterTest">
-			<MSBuild Projects="MyItemSorterTest.dproj"/>
+			<MSBuild Projects="src\MyItemSorterTest.dproj"/>
 		</Target>
 		<Target Name="MyItemSorterTest:Clean">
-			<MSBuild Targets="Clean" Projects="MyItemSorterTest.dproj"/>
+			<MSBuild Targets="Clean" Projects="src\MyItemSorterTest.dproj"/>
 		</Target>
 		<Target Name="MyItemSorterTest:Make">
-			<MSBuild Targets="Make" Projects="MyItemSorterTest.dproj"/>
+			<MSBuild Targets="Make" Projects="src\MyItemSorterTest.dproj"/>
 		</Target>
 		<Target Name="Build">
 			<CallTarget Targets="MyItemHashTest;MyItemIntListTest;MyItemListTest;MyItemQueueTest;MyItemSortedIntListTest;MyItemSortedListTest;MyItemStackTest;StringQueueTest;MyItemSorterTest"/>

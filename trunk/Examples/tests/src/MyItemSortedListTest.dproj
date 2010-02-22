@@ -1,11 +1,11 @@
 ﻿	<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 		<PropertyGroup>
-			<ProjectGuid>{e86a3087-bce9-4e4a-b192-8cc2ce11d4a4}</ProjectGuid>
-			<MainSource>MyItemSortedIntListTest.dpr</MainSource>
+			<ProjectGuid>{9d3c92de-2433-47c9-a4e3-e03c8f18b434}</ProjectGuid>
+			<MainSource>MyItemSortedListTest.dpr</MainSource>
 			<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
 			<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 			<DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
-			<DCC_DependencyCheckOutputName>MyItemSortedIntListTest.exe</DCC_DependencyCheckOutputName>
+			<DCC_DependencyCheckOutputName>MyItemSortedListTest.exe</DCC_DependencyCheckOutputName>
 			<ProjectVersion>12.0</ProjectVersion>
 			<Config Condition="'$(Config)'==''">Debug</Config>
 		</PropertyGroup>
@@ -23,7 +23,10 @@
 			<Base>true</Base>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Base)'!=''">
-			<DCC_DependencyCheckOutputName>MyItemSortedIntListTest.exe</DCC_DependencyCheckOutputName>
+			<DCC_ExeOutput>..</DCC_ExeOutput>
+			<DCC_UnitSearchPath>..\..\..\Templates;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+			<DCC_DcuOutput>..\dcu</DCC_DcuOutput>
+			<DCC_DependencyCheckOutputName>..\MyItemSortedListTest.exe</DCC_DependencyCheckOutputName>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Cfg_1)'!=''">
 			<Version>7.0</Version>
@@ -38,7 +41,6 @@
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Cfg_2)'!=''">
 			<Version>7.0</Version>
-			<DCC_UnitSearchPath>..\..\Templates;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
 			<DCC_ResourcePath>..\..\Templates;$(DCC_ResourcePath)</DCC_ResourcePath>
 			<DCC_ObjPath>..\..\Templates;$(DCC_ObjPath)</DCC_ObjPath>
 			<DCC_IncludePath>..\..\Templates;$(DCC_IncludePath)</DCC_IncludePath>
@@ -77,21 +79,27 @@
 						<Excluded_Packages Name="D:\source\delforex\out\DelforexPackage9.bpl">Delphi Code Formatting Expert</Excluded_Packages>
 					</Excluded_Packages>
 					<Source>
-						<Source Name="MainSource">MyItemSortedIntListTest.dpr</Source>
+						<Source Name="MainSource">MyItemSortedListTest.dpr</Source>
 					</Source>
 				</Delphi.Personality>
 			</BorlandProject>
 			<ProjectFileVersion>12</ProjectFileVersion>
 		</ProjectExtensions>
 		<ItemGroup>
-			<DelphiCompile Include="MyItemSortedIntListTest.dpr">
+			<DelphiCompile Include="MyItemSortedListTest.dpr">
 				<MainSource>MainSource</MainSource>
 			</DelphiCompile>
-			<DCCReference Include="..\u_MyItem.pas"/>
-			<DCCReference Include="..\u_MyItemIntSortedList.pas"/>
-			<DCCReference Include="..\..\Units\u_dzQuicksort.pas"/>
-			<None Include="..\..\Templates\t_dzIntegerSortedListTemplate.tpl"/>
-			<None Include="..\..\Templates\t_dzListTemplate.tpl"/>
+			<DCCReference Include="..\..\i_MyItemSortedList.pas"/>
+			<DCCReference Include="..\..\u_MyItemSortedList.pas"/>
+			<DCCReference Include="..\..\u_MyItem.pas"/>
+			<DCCReference Include="..\..\..\Units\u_dzQuicksort.pas"/>
+			<None Include="..\..\..\Templates\t_dzIntegerSortedObjectListTemplate.tpl"/>
+			<None Include="..\..\..\Templates\t_dzListInterfaceTemplate.tpl"/>
+			<None Include="..\..\..\Templates\t_dzListTemplate.tpl"/>
+			<None Include="..\..\..\Templates\t_dzObjectListTemplate.tpl"/>
+			<None Include="..\..\..\Templates\t_dzSortedListInterfaceTemplate.tpl"/>
+			<None Include="..\..\..\Templates\t_dzSortedListTemplate.tpl"/>
+			<None Include="..\..\..\Templates\t_dzSortedObjectListTemplate.tpl"/>
 			<BuildConfiguration Include="Base">
 				<Key>Base</Key>
 			</BuildConfiguration>

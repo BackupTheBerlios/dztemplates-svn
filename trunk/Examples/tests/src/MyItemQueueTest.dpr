@@ -2,12 +2,12 @@ program MyItemQueueTest;
 
 {$APPTYPE CONSOLE}
 
-{%File '..\..\Templates\t_dzQueueTemplate.tpl'}
+
 
 uses
   SysUtils,
-  u_MyItemQueue in '..\u_MyItemQueue.pas',
-  u_MyItem in '..\u_MyItem.pas';
+  u_MyItemQueue in '..\..\u_MyItemQueue.pas',
+  u_MyItem in '..\..\u_MyItem.pas';
 
 var
   Queue: TMyItemQueue;

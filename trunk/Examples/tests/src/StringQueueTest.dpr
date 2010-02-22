@@ -4,8 +4,8 @@ program StringQueueTest;
 
 uses
   SysUtils,
-  u_PCharQueue in '..\u_PCharQueue.pas',
-  u_StringQueue in '..\u_StringQueue.pas';
+  u_PCharQueue in '..\..\u_PCharQueue.pas',
+  u_StringQueue in '..\..\u_StringQueue.pas';
 
 var
   Queue: TStringQueue;
