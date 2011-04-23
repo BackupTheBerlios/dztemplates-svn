@@ -34,8 +34,12 @@ procedure QuickSort(_Left, _Right: integer; _DataHandler: IQSDataHandler); overl
 
 {: Call BinarySearch with a method pointer that
    compares an index to the Item sought.
+   @param Index contains the index where the item is supposed to be
+                (It's index, if it was found or the index where it would be inserted if not)
+   @param Duplicates determines whether duplicates are allowed in the list or not
+   @returns true, if the item was found, false otherwise
    @longcode(##
-     ItemIdx := BinarySearch(Key, 0, count-1, Self.CompareToKey);
+     Found := BinarySearch(0, count-1, Idx, Key, Self.CompareToKey);
    ##) }
 function BinarySearch(_Left, _Right: integer; var _Index: integer;
   const _Key; _CompareMeth: TCompareToItemMeth1;
