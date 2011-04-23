@@ -57,11 +57,11 @@ type
     /// @param Key is the sought item's key
     /// @param Idx is the index of the item, if found, only valid if the function returns true
     /// @returns true, if the item has been found, false otherwise
-    function Find(_Key: _KEY_TYPE_; out _Idx: integer): boolean; overload;
+    function Find(_Key: _KEY_TYPE_; out _Idx: integer): boolean; overload; virtual;
     /// searches for the item with the given Key
     /// @param Key is the sought item's key
     /// @returns true, if the item has been found, false otherwise
-    function Find(_Key: _KEY_TYPE_): boolean; overload;
+    function Find(_Key: _KEY_TYPE_): boolean; overload; virtual;
     function Search(_Key: _KEY_TYPE_; out _Idx: integer): boolean; overload; deprecated; // use Find instead
     function Search(_Key: _KEY_TYPE_): boolean; overload; deprecated; // use Find instead
 
@@ -73,7 +73,7 @@ type
     /// @returns true, if the item has been found, false otherwise
     /// @note: if ITEM_TYPE = integer we can not create overloaded Search methods,
     ///        in this case declare the conditional define above in your unit.
-    function Find(_Key: _KEY_TYPE_; out _Item: _ITEM_TYPE_): boolean; overload;
+    function Find(_Key: _KEY_TYPE_; out _Item: _ITEM_TYPE_): boolean; overload; virtual;
     function Search(_Key: _KEY_TYPE_; out _Item: _ITEM_TYPE_): boolean; overload; deprecated; // use Find instead
 {$ENDIF __DZ_SORTED_LIST_TEMPLATE_ITEM_TYPE_IS_INTEGER__}
     /// determines what to do if trying to insert an item with a key that already exists
